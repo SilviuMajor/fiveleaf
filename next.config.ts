@@ -30,6 +30,19 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "react-icons"],
   },
 
+  // Legacy clients / crawlers that hardcode /favicon.ico get the
+  // branded generated icon instead of a 404. Modern browsers use the
+  // <link rel="icon"> tag pointing at /icon and never hit this.
+  async redirects() {
+    return [
+      {
+        source: "/favicon.ico",
+        destination: "/icon",
+        permanent: true,
+      },
+    ];
+  },
+
   async headers() {
     const securityHeaders = [
       // HTTPS-only for two years, includes subdomains. Safe because the

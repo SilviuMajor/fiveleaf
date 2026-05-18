@@ -83,7 +83,12 @@ export function Nav() {
               href={SITE.dashboardUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm opacity-70 hover:opacity-100 transition-opacity"
+              className={cn(
+                "inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-colors",
+                scrolled
+                  ? "border-fl-line text-fl-ink hover:bg-fl-surface-alt"
+                  : "border-white/30 text-white hover:bg-white/10",
+              )}
             >
               Sign in
             </a>
