@@ -33,6 +33,16 @@ const CARDS: Card[] = [
     ],
   },
   {
+    name: "Big consultancies",
+    tone: "rose",
+    tagline: "A deck. Six figures. Twelve months.",
+    bullets: [
+      "Accenture, Deloitte, BCG-X",
+      "You operate it after handover",
+      "Roadmap drift is on you",
+    ],
+  },
+  {
     name: "Fiveleaf",
     tone: "sage",
     hero: true,
@@ -41,16 +51,6 @@ const CARDS: Card[] = [
       "Cost of one customer-service hire",
       "Built for you, run by us",
       "Plugs into the stack you already run",
-    ],
-  },
-  {
-    name: "Big consultancies",
-    tone: "rose",
-    tagline: "A deck. Six figures. Twelve months.",
-    bullets: [
-      "Accenture, Deloitte, BCG-X",
-      "You operate it after handover",
-      "Roadmap drift is on you",
     ],
   },
 ];

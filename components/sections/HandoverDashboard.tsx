@@ -1,32 +1,17 @@
-import {
-  ArrowRight,
-  CircleAlert,
-  ClipboardCheck,
-  History,
-  Sparkles,
-  UserRound,
-} from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
+import { History, MessageSquareMore, UserRound, ClipboardCheck } from "lucide-react";
 import { Pill } from "@/components/brand/Pill";
 import { FadeUp } from "@/components/motion/FadeUp";
 
 /**
  * HandoverDashboard — "When the agent doesn't have it" section.
  *
- * Sits directly after AgentsExplainer on the homepage. The narrative
- * arc:
- *   - V5 above shows what happens when the agent CAN handle a case.
- *   - This section shows what happens when it CAN'T: a live human
- *     handover, with the full story already loaded on the screen.
- *
- * Layout: split on lg+. Copy + 4 feature bullets on the left, a mocked
- * dashboard panel on the right showing a real handover (Sarah's
- * cancellation from V5, but escalated because she's moving abroad).
- *
- * The dashboard mock is intentionally not pixel-perfect product UI —
- * it's stylised to read as a clean editorial sketch of the real
- * thing. Same visual vocabulary as the rest of the site (rounded-2xl,
- * fl-line borders, mono labels, pastel accents).
+ * Sits after AgentsExplainer. Left: copy + feature bullets. Right: a
+ * simple chat mock of a *warm handover* — the AI tells the customer
+ * it's bringing in a human, a "finding someone" pill bridges the gap,
+ * then a named technical-support specialist picks up having already
+ * read the whole thread. No dashboard chrome, no "why it stopped",
+ * no action buttons — just the conversation the customer actually
+ * sees.
  */
 
 const FEATURES: Array<{
@@ -36,49 +21,45 @@ const FEATURES: Array<{
 }> = [
   {
     icon: History,
-    title: "Full transcript on takeover.",
-    body: "The whole conversation. Every system the agent touched. Every result it got back. No “start from scratch” handovers.",
+    title: "No starting over.",
+    body: "The specialist gets the full conversation, every system the agent touched, every result it got back. The customer never repeats themselves.",
+  },
+  {
+    icon: MessageSquareMore,
+    title: "A warm intro, not a queue ticket.",
+    body: "The agent hands off inside the same conversation, on the same channel. Seconds, not “someone will get back to you”.",
   },
   {
     icon: UserRound,
-    title: "Customer context preloaded.",
-    body: "Plan, tenure, payment status, recent tickets, last NPS. All on screen the moment the human picks up.",
-  },
-  {
-    icon: Sparkles,
-    title: "Suggested next step.",
-    body: "What the agent was about to do, why it stopped, and what the playbook says comes next. The human decides; the agent has the prep work done.",
+    title: "Context travels with it.",
+    body: "Account, history, and everything the agent already tried are on screen the moment your specialist picks up.",
   },
   {
     icon: ClipboardCheck,
     title: "Closed loop, every time.",
-    body: "Resolution gets logged back to the agent. The next handover of this kind is rarer than the last one.",
+    body: "How it was resolved gets logged back to the agent. The next handover of this kind is rarer than the last one.",
   },
 ];
 
 export function HandoverDashboard() {
   return (
-    <section
-      id="handover"
-      className="bg-fl-surface scroll-mt-24"
-    >
+    <section id="handover" className="bg-fl-surface scroll-mt-24">
       <div className="mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           {/* LEFT — copy + feature list */}
           <FadeUp>
             <div>
               <Pill tone="neutral" uppercase>
-                Handover dashboard
+                Live handover
               </Pill>
               <h2 className="font-display mt-5 text-balance text-3xl font-semibold leading-[1.05] tracking-tight md:text-5xl">
-                When the agent doesn&rsquo;t have it, your team gets the whole
-                story.
+                When it needs a human, the handover is seamless.
               </h2>
               <p className="mt-5 max-w-xl text-base text-fl-ink-soft md:text-lg">
-                If the agent isn&rsquo;t sure, it doesn&rsquo;t bounce the
-                customer back to a queue. It hands the conversation to your team
-                with everything it learned, exactly where it got stuck, and what
-                your playbook says comes next.
+                If the agent can&rsquo;t take it all the way, it doesn&rsquo;t
+                bounce the customer back to a queue. It introduces a real person
+                inside the same conversation, who&rsquo;s already read every
+                word.
               </p>
 
               <ul className="mt-10 space-y-6">
@@ -101,12 +82,12 @@ export function HandoverDashboard() {
             </div>
           </FadeUp>
 
-          {/* RIGHT — mocked dashboard panel */}
+          {/* RIGHT — simple warm-handover conversation */}
           <FadeUp delay={0.05}>
             <div className="lg:sticky lg:top-24">
-              <DashboardMock />
+              <HandoverChat />
               <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-fl-muted">
-                Mock of the live handover view
+                What the customer sees during a handover
               </p>
             </div>
           </FadeUp>
@@ -117,118 +98,75 @@ export function HandoverDashboard() {
 }
 
 /**
- * DashboardMock — stylised internal-tool sketch. Continues the V5
- * cancellation scenario: Sarah's first reply was "I want to cancel",
- * the agent offered the same-price upgrade, and she came back with
- * "I'm moving to Oslo" — at which point the retention play isn't
- * viable and the agent escalates.
+ * HandoverChat — a clean phone-style transcript: customer issue → AI
+ * agent warm handover → "finding someone" bridge → named technical
+ * support specialist picks up with full context.
  */
-function DashboardMock() {
+function HandoverChat() {
   return (
     <div className="overflow-hidden rounded-2xl border border-fl-line bg-white shadow-xl">
-      {/* Mac-style chrome bar so the panel reads as a product window */}
-      <div className="flex items-center justify-between border-b border-fl-line bg-fl-surface-alt px-4 py-2.5">
-        <div className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
-        </div>
+      <header className="flex items-center justify-between border-b border-fl-line bg-fl-surface-alt px-4 py-3">
         <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-fl-muted">
-          fiveleaf · handover · live
+          Technical support
         </p>
-        <div className="w-9" aria-hidden="true" />
-      </div>
+        <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-fl-muted">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+          live
+        </span>
+      </header>
 
-      {/* Customer + status header */}
-      <div className="border-b border-fl-line bg-white px-5 py-4">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <p className="flex items-center gap-2 text-sm font-semibold text-fl-ink">
-              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#25D366]/15 text-[#25D366]">
-                <SiWhatsapp className="h-3 w-3" />
-              </span>
-              Sarah Patel
-            </p>
-            <p className="mt-1 text-xs text-fl-ink-soft">
-              WhatsApp · 18-month customer · 450Mb · NPS 8 · 0 open tickets
+      <div className="space-y-4 px-4 py-5 md:px-5">
+        {/* Customer */}
+        <div className="flex justify-end">
+          <p className="max-w-[85%] rounded-2xl rounded-br-sm bg-fl-pastel-neutral px-3.5 py-2.5 text-sm leading-relaxed text-fl-ink">
+            My broadband keeps dropping every evening, and rebooting the router
+            doesn&rsquo;t fix it.
+          </p>
+        </div>
+
+        {/* AI agent — warm handover */}
+        <div>
+          <p className="mb-1 ml-1 font-mono text-[10px] uppercase tracking-[0.16em] text-fl-muted">
+            AI agent
+          </p>
+          <div className="flex">
+            <p className="max-w-[88%] rounded-2xl rounded-bl-sm bg-fl-ink px-3.5 py-2.5 text-sm leading-relaxed text-white">
+              This one deserves a hands-on look. I&rsquo;m bringing in one of
+              our technical support specialists now. They&rsquo;ll have the
+              whole conversation, so you won&rsquo;t need to repeat anything.
             </p>
           </div>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-fl-pastel-rose px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-fl-pastel-rose-ink">
-            <CircleAlert className="h-3 w-3" />
-            Agent requested human
+        </div>
+
+        {/* Bridge pill */}
+        <div className="flex justify-center py-1">
+          <span className="inline-flex items-center gap-2 rounded-full bg-fl-surface-alt px-3.5 py-1.5 text-xs font-medium text-fl-ink-soft ring-1 ring-fl-line">
+            <span className="flex gap-0.5">
+              <span className="h-1 w-1 rounded-full bg-fl-muted" />
+              <span className="h-1 w-1 rounded-full bg-fl-muted" />
+              <span className="h-1 w-1 rounded-full bg-fl-muted" />
+            </span>
+            Finding someone
           </span>
         </div>
-      </div>
 
-      {/* Conversation excerpt */}
-      <div className="border-b border-fl-line px-5 py-4">
-        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-fl-muted">
-          Conversation
-        </p>
-        <ol className="mt-3 space-y-2.5">
-          <li className="flex justify-end">
-            <p className="max-w-[88%] rounded-2xl rounded-br-sm bg-fl-pastel-neutral px-3 py-2 text-sm text-fl-ink">
-              I want to cancel.
+        {/* Human specialist */}
+        <div>
+          <p className="mb-1 ml-1 flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-fl-muted">
+            <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-fl-pastel-sage text-[8px] font-semibold text-fl-pastel-sage-ink">
+              M
+            </span>
+            Maya · Technical support
+          </p>
+          <div className="flex">
+            <p className="max-w-[90%] rounded-2xl rounded-bl-sm border border-fl-line bg-fl-surface-alt px-3.5 py-2.5 text-sm leading-relaxed text-fl-ink">
+              Hi, I&rsquo;ve just read through the whole thread, so there&rsquo;s
+              no need to go over it again. Evening drops that survive a router
+              reboot usually point to line noise. Let&rsquo;s get this sorted,
+              roughly what time do they start?
             </p>
-          </li>
-          <li className="flex">
-            <p className="max-w-[92%] rounded-2xl rounded-bl-sm bg-fl-ink px-3 py-2 text-sm leading-relaxed text-white">
-              Sorry to hear that. There&rsquo;s a 900Mb plan available at your
-              address for the price you pay now. Worth a look?
-            </p>
-          </li>
-          <li className="flex justify-end">
-            <p className="max-w-[88%] rounded-2xl rounded-br-sm bg-fl-pastel-neutral px-3 py-2 text-sm text-fl-ink">
-              I&rsquo;m moving to Oslo, actually.
-            </p>
-          </li>
-        </ol>
-      </div>
-
-      {/* Why the agent stopped */}
-      <div className="border-b border-fl-line bg-fl-surface-alt px-5 py-4">
-        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-fl-muted">
-          Why the agent stopped
-        </p>
-        <p className="mt-2 text-sm leading-relaxed text-fl-ink">
-          Out-of-area cancellation. Retention play not applicable; the customer
-          is leaving the UK service area.
-        </p>
-      </div>
-
-      {/* Suggested next step */}
-      <div className="border-b border-fl-line bg-fl-pastel-sage/40 px-5 py-4">
-        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-fl-pastel-sage-ink">
-          Suggested next step · KB-RET-301
-        </p>
-        <p className="mt-2 text-sm leading-relaxed text-fl-ink">
-          Process the cancellation, apply the 14-day notice, and offer{" "}
-          <span className="font-semibold">pause-not-cancel</span> in case the
-          move falls through. Sarah keeps her plan and price for 90 days if she
-          comes back.
-        </p>
-      </div>
-
-      {/* Action row */}
-      <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-4">
-        <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            className="inline-flex items-center gap-1.5 rounded-full bg-fl-ink px-4 py-2 text-xs font-semibold text-white"
-          >
-            Take over
-            <ArrowRight className="h-3 w-3" />
-          </button>
-          <button
-            type="button"
-            className="inline-flex items-center gap-1.5 rounded-full border border-fl-line bg-white px-4 py-2 text-xs font-semibold text-fl-ink-soft"
-          >
-            Mark resolved
-          </button>
+          </div>
         </div>
-        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-fl-muted">
-          escalated 14s ago
-        </p>
       </div>
     </div>
   );

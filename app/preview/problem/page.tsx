@@ -8,14 +8,28 @@ import { ProblemV2 } from "@/components/sections/problem-variants/ProblemV2";
 import { ProblemV3 } from "@/components/sections/problem-variants/ProblemV3";
 import { ProblemV4 } from "@/components/sections/problem-variants/ProblemV4";
 import { ProblemV5 } from "@/components/sections/problem-variants/ProblemV5";
+import { ProblemV6 } from "@/components/sections/problem-variants/ProblemV6";
+import { ProblemV7 } from "@/components/sections/problem-variants/ProblemV7";
 import { PROBLEMS, PROBLEM_HEADER } from "@/components/sections/problem-variants/problems-data";
 
 const VARIANTS = [
   {
-    id: "v5",
-    title: "V5. Dashed card with H2 + iconed 2×2",
+    id: "v6",
+    title: "V6. Black background, white text — no icons",
     subtitle:
-      "The shape Silv liked from the preview summary, brought up to a real section. Eyebrow pill outside; one dashed-bordered card carrying the H2 and the four problems together as one cohesive block. Each problem now has an icon tile to the left. Tighter than separate cards, but the outer dashed border still gives it presence.",
+      "The exact dashed-card layout that's live now (mono label + H2 inside, 2×2 grid), inverted to a near-black band with a low-opacity white dashed border. Reads as a deliberate dark beat between two light sections. Pure typography, no icons.",
+  },
+  {
+    id: "v7",
+    title: "V7. Black background, white text — with icons",
+    subtitle:
+      "Same dark dashed-card treatment as V6, but each problem gets a white-on-translucent icon tile to its left. Slightly more structured / product-y than V6's pure type. This is the icon option.",
+  },
+  {
+    id: "v5",
+    title: "V5. Dashed card with H2 + iconed 2×2 (light — current live)",
+    subtitle:
+      "The light version currently shipped on the homepage, kept here for side-by-side comparison against the two dark options above.",
   },
   {
     id: "v1",
@@ -107,27 +121,37 @@ export default function ProblemPreview() {
           </div>
         </section>
 
-        <Banner index={0} title={VARIANTS[0].title} subtitle={VARIANTS[0].subtitle} id="problem-v5" />
+        <Banner index={0} title={VARIANTS[0].title} subtitle={VARIANTS[0].subtitle} id="problem-v6" />
+        <Frame>
+          <ProblemV6 />
+        </Frame>
+
+        <Banner index={1} title={VARIANTS[1].title} subtitle={VARIANTS[1].subtitle} id="problem-v7" />
+        <Frame>
+          <ProblemV7 />
+        </Frame>
+
+        <Banner index={2} title={VARIANTS[2].title} subtitle={VARIANTS[2].subtitle} id="problem-v5" />
         <Frame>
           <ProblemV5 />
         </Frame>
 
-        <Banner index={1} title={VARIANTS[1].title} subtitle={VARIANTS[1].subtitle} id="problem-v1" />
+        <Banner index={3} title={VARIANTS[3].title} subtitle={VARIANTS[3].subtitle} id="problem-v1" />
         <Frame>
           <ProblemV1 />
         </Frame>
 
-        <Banner index={2} title={VARIANTS[2].title} subtitle={VARIANTS[2].subtitle} id="problem-v2" />
+        <Banner index={4} title={VARIANTS[4].title} subtitle={VARIANTS[4].subtitle} id="problem-v2" />
         <Frame>
           <ProblemV2 />
         </Frame>
 
-        <Banner index={3} title={VARIANTS[3].title} subtitle={VARIANTS[3].subtitle} id="problem-v3" />
+        <Banner index={5} title={VARIANTS[5].title} subtitle={VARIANTS[5].subtitle} id="problem-v3" />
         <Frame>
           <ProblemV3 />
         </Frame>
 
-        <Banner index={4} title={VARIANTS[4].title} subtitle={VARIANTS[4].subtitle} id="problem-v4" />
+        <Banner index={6} title={VARIANTS[6].title} subtitle={VARIANTS[6].subtitle} id="problem-v4" />
         <Frame>
           <ProblemV4 />
         </Frame>

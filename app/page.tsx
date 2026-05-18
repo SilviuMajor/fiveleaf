@@ -27,9 +27,9 @@ export default function Home() {
         <Partners />
         <WhyFiveleaf />
         <HowItWorks />
+        <BookingEmbed />
         <Founder />
         <Faq />
-        <BookingEmbed />
       </main>
       <Footer />
     </>
