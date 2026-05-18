@@ -59,7 +59,7 @@ export function Nav() {
           )}
         >
           <Link href="/" aria-label="Fiveleaf home" className="flex items-center">
-            <Logo size="xs" />
+            <Logo size="sm" />
           </Link>
 
           {/* Desktop: full inline nav + Sign in + Book a call */}

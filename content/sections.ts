@@ -1,8 +1,5 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  Hourglass,
-  Moon,
-  PowerOff,
   Repeat,
   TrendingUp,
   Sparkles,
@@ -20,33 +17,33 @@ import {
 import type { PillTone } from "@/components/brand/Pill";
 
 export type ProblemPoint = {
-  /** Optional — kept on the type so future visual variants can show
-   *  an icon per problem. The current live section doesn't render it. */
-  icon: LucideIcon;
-  title: string;
+  /** The recognisable pain — the left column of the symptom →
+   *  consequence table. Short and declarative. */
+  symptom: string;
+  /** The cost — the right column. New information, never a
+   *  restatement of the symptom. */
   body: string;
 };
 
+/** Voice B (plain & blunt): short on the left, the real cost on the
+ *  right. Left = the pain the reader lives; right = what it's
+ *  actually doing to the business. */
 export const PROBLEM_POINTS: ProblemPoint[] = [
   {
-    icon: TrendingUp,
-    title: "Volume up. Hiring flat.",
-    body: "Tickets keep growing. Headcount doesn't. The metric you reward is the one you can't afford to scale.",
+    symptom: "More tickets. Same team.",
+    body: "You can't hire fast enough to match the curve, so service slips exactly where you can least afford it to.",
   },
   {
-    icon: Moon,
-    title: "After hours, demand dies.",
-    body: "A third of your inbound lands outside support hours. Most of it is gone by morning, the lead with it.",
+    symptom: "Out-of-hours goes unanswered.",
+    body: "Demand doesn't wait for 9am. Most of it, and the sale attached, is gone before anyone reads it.",
   },
   {
-    icon: PowerOff,
-    title: "The bot made it worse.",
-    body: "Off-the-shelf chatbots resolve under one in five. The rest is press-zero rage and a worse experience than no bot at all.",
+    symptom: "The chatbot made it worse.",
+    body: "It deflects under one in five and irritates the rest. Customers now distrust the channel on sight.",
   },
   {
-    icon: Hourglass,
-    title: "Internal builds freeze at 60%.",
-    body: "The specialist leaves. The half-built system becomes a liability nobody touches, and the budget that paid for it is gone.",
+    symptom: "The build never finished.",
+    body: "Your specialist left at 60% done. What's left is a liability no one will put their name to.",
   },
 ];
 

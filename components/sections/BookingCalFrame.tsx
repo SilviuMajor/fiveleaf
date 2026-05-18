@@ -32,10 +32,13 @@ export default function BookingCalFrame() {
   }, []);
 
   return (
+    // No fixed height: @calcom/embed-react auto-resizes the iframe to
+    // the calendar's actual content height, so the white card hugs the
+    // calendar instead of leaving a tall dead zone underneath it.
     <Cal
       namespace={CAL_NAMESPACE}
       calLink={CAL_LINK}
-      style={{ width: "100%", height: "100%", overflow: "scroll" }}
+      style={{ width: "100%" }}
       config={{ layout: "month_view" }}
     />
   );

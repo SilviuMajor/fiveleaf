@@ -103,9 +103,18 @@ export function BookingEmbed() {
             ref={sentinelRef}
             className="mt-10 overflow-hidden rounded-2xl border border-white/10 bg-white shadow-2xl md:mt-14"
           >
-            <div className="min-h-[720px] sm:min-h-[760px] md:min-h-[820px]">
-              {shouldLoad ? <BookingCalFrame /> : <CalSkeleton />}
-            </div>
+            {shouldLoad ? (
+              // Embed auto-sizes; the card wraps it tightly (no min-h
+              // so there's no whitespace below the calendar).
+              <BookingCalFrame />
+            ) : (
+              // Skeleton needs a height so there's no layout jump when
+              // the calendar mounts. Sized close to cal's real month
+              // view so the swap is near-seamless.
+              <div className="min-h-[620px]">
+                <CalSkeleton />
+              </div>
+            )}
           </div>
         </FadeUp>
       </div>

@@ -169,12 +169,10 @@ function HandoverChat() {
           </p>
           <div className="flex">
             <p className="max-w-[90%] rounded-2xl rounded-bl-sm border border-fl-line bg-fl-surface-alt px-3.5 py-2.5 text-sm leading-relaxed text-fl-ink">
-              Hi, I&rsquo;ve just had a look at your issue. Your domain&rsquo;s
-              mail routing didn&rsquo;t carry over cleanly in the migration, so
-              anything you send is being rejected upstream. The self-serve tool
-              can&rsquo;t rewrite this safely, so I&rsquo;m going to correct it
-              by hand on our side now. Give me two minutes and I&rsquo;ll
-              confirm the moment mail&rsquo;s flowing again.
+              Hi Jordan, just had a look at your issue. Your domain&rsquo;s
+              routing didn&rsquo;t migrate correctly, so anything you send is
+              being rejected upstream. I&rsquo;m going to correct it manually.
+              Give me two minutes while I look into this.
             </p>
           </div>
         </div>
