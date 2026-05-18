@@ -1,26 +1,308 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Marketing site is stark black + white. Dashboard product uses an
+     off-white background. Both surfaces are wired in.  */
+  --color-fl-bg: #171717;            /* hsl(0 0% 9%) — canonical near-black */
+  --color-fl-bg-soft: #1F1F1F;       /* hsl(0 0% 12%) — card on dark */
+  --color-fl-surface: #FFFFFF;
+  --color-fl-surface-alt: #FAFAFA;   /* hsl(0 0% 98%) — off-white */
+  --color-fl-ink: #171717;
+  --color-fl-ink-soft: #404040;      /* hsl(0 0% 25%) */
+  --color-fl-muted: #737373;         /* hsl(0 0% 45%) */
+  --color-fl-line: #E5E5E5;          /* hsl(0 0% 90%) */
+  --color-fl-line-strong: #D4D4D4;   /* hsl(0 0% 83%) */
+  --color-fl-line-dark: #2A2A2A;     /* divider on dark surfaces */
+
+  /* Brand pastel palette — OKLCH 94-96% lightness (canonical) */
+  --color-fl-pastel-sage: oklch(94% 0.04 155);
+  --color-fl-pastel-sage-ink: oklch(35% 0.08 155);
+  --color-fl-pastel-rose: oklch(94% 0.04 10);
+  --color-fl-pastel-rose-ink: oklch(35% 0.08 10);
+  --color-fl-pastel-sky: oklch(95% 0.04 220);
+  --color-fl-pastel-sky-ink: oklch(35% 0.09 220);
+  --color-fl-pastel-sand: oklch(96% 0.03 75);
+  --color-fl-pastel-sand-ink: oklch(40% 0.07 75);
+  --color-fl-pastel-lavender: oklch(95% 0.04 290);
+  --color-fl-pastel-lavender-ink: oklch(35% 0.09 290);
+  --color-fl-pastel-neutral: #F5F5F5;
+  --color-fl-pastel-neutral-ink: #404040;
+
+  /* Conversation status (used in HeroVisual + future agent badges) */
+  --color-fl-status-ai: #22C55E;
+  --color-fl-status-waiting: #EF4444;
+  --color-fl-status-handover: #3B82F6;
+  --color-fl-status-aftercare: #F59E0B;
+  --color-fl-status-resolved: #6B7280;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  ::selection {
+    background-color: var(--color-fl-ink);
+    color: #fff;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .font-display {
+    letter-spacing: -0.02em;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes fl-gradient-drift {
+  0% {
+    transform: translate3d(-8%, -4%, 0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(8%, 6%, 0);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(-8%, -4%, 0);
+    opacity: 0.55;
+  }
+}
+
+@keyframes fl-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fl-hero-gradient {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(45% 40% at 25% 35%, rgba(220, 230, 242, 0.18), transparent 70%),
+    radial-gradient(50% 45% at 75% 60%, rgba(248, 226, 208, 0.12), transparent 75%),
+    radial-gradient(35% 30% at 50% 80%, rgba(229, 222, 239, 0.14), transparent 70%);
+  filter: blur(60px);
+  animation: fl-gradient-drift 22s ease-in-out infinite;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.fl-hero-fade {
+  animation: fl-fade-up 0.7s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fl-hero-gradient {
+    animation: none;
+  }
+  .fl-hero-fade {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* V12 — horizontal scroll-driven cards.
+
+   Primary: CSS animation-timeline + view-timeline. Vertical scroll progresses
+   the wrapper through the viewport; the inner track translates left in lockstep.
+   Supported in Chrome 115+, Firefox 140+, Safari 26+. The inner track stays
+   pinned via position: sticky regardless.
+
+   Fallback (unsupported browsers OR contexts that throttle animation updates,
+   e.g. hidden iframes): the inner track stays a horizontal swipe-snap row, so
+   the user can scroll right through the cards manually. The wrapper collapses
+   to its natural height. */
+
+.fl-v12-track {
+  /* Always horizontally scrollable as a baseline — the scroll-driven animation
+     just locks the scroll for users in supporting browsers. */
+  scroll-snap-type: x mandatory;
+}
+.fl-v12-track > * {
+  scroll-snap-align: center;
+}
+
+@supports (animation-timeline: view()) {
+  .fl-v12-wrapper {
+    view-timeline-name: --fl-v12-t;
+    view-timeline-axis: block;
+  }
+  .fl-v12-sticky {
+    /* In supporting browsers, the sticky child handles the pin; the row inside
+       is animated via the timeline, not user scroll. */
+    overflow: hidden;
+  }
+  .fl-v12-track {
+    animation-name: fl-v12-translate;
+    /* Scroll-driven animations need explicit duration: auto so they progress
+       with the timeline rather than completing instantly at 0s. */
+    animation-duration: auto;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: --fl-v12-t;
+    /* For a wrapper that is N * 100vh tall in a 100vh viewport, the full
+       visibility timeline (cover) spans (N + 1) viewports. The "fully pinned"
+       portion runs from viewport 1 to viewport N, so pin-start = 1/(N+1) and
+       pin-end = N/(N+1). For N=3 that's 25% → 75%. The animation only runs
+       while the wrapper is fully pinned, so motion starts when the section is
+       locked at the top and ends as it begins to unpin. */
+    animation-range: 25% 75%;
+    will-change: transform;
+    /* The animation drives translate; turn the inline horizontal scroll off. */
+    overflow: visible !important;
+    scroll-snap-type: none !important;
+  }
+  @keyframes fl-v12-translate {
+    from {
+      transform: translate3d(0vw, 0, 0);
+    }
+    to {
+      transform: translate3d(var(--fl-v12-end, -200vw), 0, 0);
+    }
+  }
+}
+
+@supports not (animation-timeline: view()) {
+  .fl-v12-wrapper {
+    height: auto !important;
+  }
+  .fl-v12-sticky {
+    position: static !important;
+    height: auto !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
 }
