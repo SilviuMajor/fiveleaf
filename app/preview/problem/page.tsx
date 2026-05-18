@@ -10,7 +10,17 @@ import { ProblemV4 } from "@/components/sections/problem-variants/ProblemV4";
 import { ProblemV5 } from "@/components/sections/problem-variants/ProblemV5";
 import { ProblemV6 } from "@/components/sections/problem-variants/ProblemV6";
 import { ProblemV7 } from "@/components/sections/problem-variants/ProblemV7";
-import { PROBLEMS, PROBLEM_HEADER } from "@/components/sections/problem-variants/problems-data";
+import { ProblemV4Copy } from "@/components/sections/problem-variants/ProblemV4Copy";
+import {
+  PROBLEM_HEADER,
+  PROBLEM_COPY_SETS,
+} from "@/components/sections/problem-variants/problems-data";
+
+const COPY_SETS = [
+  { id: "copy-a", key: "metrics" as const },
+  { id: "copy-b", key: "blunt" as const },
+  { id: "copy-c", key: "cost" as const },
+];
 
 const VARIANTS = [
   {
@@ -69,6 +79,15 @@ export default function ProblemPreview() {
             </Pill>
           </div>
           <nav aria-label="Variants" className="flex items-center gap-1.5 text-xs">
+            {COPY_SETS.map((c) => (
+              <a
+                key={c.id}
+                href={`#problem-${c.id}`}
+                className="rounded-full border border-fl-ink bg-fl-ink px-3 py-1.5 font-mono uppercase tracking-[0.14em] text-white"
+              >
+                {c.id.replace("copy-", "")}
+              </a>
+            ))}
             {VARIANTS.map((v) => (
               <a
                 key={v.id}
@@ -88,37 +107,46 @@ export default function ProblemPreview() {
             Internal review
           </Pill>
           <h1 className="font-display mt-5 max-w-3xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
-            The problem: four shapes, fresh copy.
+            The problem: pick the copy.
           </h1>
           <p className="mt-5 max-w-2xl text-base text-fl-ink-soft md:text-lg">
-            Four format options for the &ldquo;The problem&rdquo; section. All four use{" "}
-            <strong>the same fresh copy</strong>, four problems each, no numbered
-            markers, leaning toward 2&rsquo;s in the layout per Silv&rsquo;s
-            preference. The shared copy is shown in the panel below so we can talk
-            about format and copy independently.
+            Format is locked to <strong>V4 (symptom → consequence table)</strong>.
+            The three blocks below are the same layout with three different{" "}
+            <strong>copy voices</strong>. In every one the left column is the pain
+            the reader recognises and the right column is the cost &mdash; new
+            information, never a restatement of the left. The H2 stays the same;
+            we&rsquo;re only choosing the four rows&rsquo; wording. Format
+            references (V5&ndash;V7 etc.) are still further down for context.
           </p>
+        </section>
 
-          {/* The shared copy on display, separate from any variant */}
-          <div className="mt-10 rounded-2xl border border-dashed border-fl-line bg-fl-surface-alt p-6 md:p-8">
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-fl-muted">
-              Shared copy across all four variants
-            </p>
-            <p className="font-display mt-3 text-balance text-2xl font-semibold leading-tight tracking-tight text-fl-ink md:text-3xl">
-              {PROBLEM_HEADER.h2}
-            </p>
-            <ul className="mt-6 grid gap-4 md:grid-cols-2 md:gap-x-10 md:gap-y-5">
-              {PROBLEMS.map((p) => (
-                <li key={p.title}>
-                  <p className="font-display text-base font-semibold tracking-tight text-fl-ink md:text-lg">
-                    {p.title}
-                  </p>
-                  <p className="mt-1.5 text-sm leading-relaxed text-fl-ink-soft">
-                    {p.body}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {COPY_SETS.map((c, i) => {
+          const set = PROBLEM_COPY_SETS[c.key];
+          return (
+            <div key={c.id}>
+              <Banner
+                index={i}
+                total={COPY_SETS.length}
+                kicker="Copy option"
+                title={set.label}
+                subtitle={set.note}
+                id={`problem-${c.id}`}
+              />
+              <Frame>
+                <ProblemV4Copy points={set.points} />
+              </Frame>
+            </div>
+          );
+        })}
+
+        <section className="mx-auto max-w-6xl px-6 pt-10 md:px-10 md:pt-16">
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-fl-muted">
+            Format references (not the decision here)
+          </p>
+          <p className="mt-2 max-w-2xl text-sm text-fl-ink-soft">
+            The blocks below are the earlier <em>format</em> explorations, kept
+            for context. The copy decision above is what matters now.
+          </p>
         </section>
 
         <Banner index={0} title={VARIANTS[0].title} subtitle={VARIANTS[0].subtitle} id="problem-v6" />
@@ -183,18 +211,22 @@ function Banner({
   title,
   subtitle,
   id,
+  total = VARIANTS.length,
+  kicker = "Variant",
 }: {
   index: number;
   title: string;
   subtitle: string;
   id: string;
+  total?: number;
+  kicker?: string;
 }) {
   return (
     <section id={id} className="border-y border-fl-line bg-fl-bg text-white scroll-mt-24">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-10 md:flex-row md:items-end md:justify-between md:gap-10 md:px-10 md:py-14">
         <div>
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">
-            Variant {String(index + 1).padStart(2, "0")} / {VARIANTS.length}
+            {kicker} {String(index + 1).padStart(2, "0")} / {total}
           </p>
           <h2 className="font-display mt-2 text-balance text-2xl font-semibold leading-tight tracking-tight md:text-4xl">
             {title}

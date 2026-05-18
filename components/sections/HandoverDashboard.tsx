@@ -88,12 +88,14 @@ export function HandoverDashboard() {
             </div>
           </FadeUp>
 
-          {/* RIGHT — simple warm-handover conversation */}
+          {/* RIGHT — warm-handover conversation, then the behind-the-
+              scenes summary the AI passed across */}
           <FadeUp delay={0.05}>
             <div className="lg:sticky lg:top-24">
               <HandoverChat />
+              <HandoverSummary />
               <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-fl-muted">
-                What the customer sees during a handover
+                What the customer sees, and what the AI passed across
               </p>
             </div>
           </FadeUp>
@@ -125,8 +127,8 @@ function HandoverChat() {
         {/* Customer */}
         <div className="flex justify-end">
           <p className="max-w-[85%] rounded-2xl rounded-br-sm bg-fl-pastel-neutral px-3.5 py-2.5 text-sm leading-relaxed text-fl-ink">
-            My broadband keeps dropping every evening, and rebooting the router
-            doesn&rsquo;t fix it.
+            Emails from our domain stopped sending after you migrated us last
+            week. Your unblock checker just errors out.
           </p>
         </div>
 
@@ -137,35 +139,12 @@ function HandoverChat() {
           </p>
           <div className="flex">
             <p className="max-w-[88%] rounded-2xl rounded-bl-sm bg-fl-ink px-3.5 py-2.5 text-sm leading-relaxed text-white">
-              This one deserves a hands-on look. I&rsquo;m bringing in one of
-              our technical support specialists now. They&rsquo;ll have the
-              whole conversation, so you won&rsquo;t need to repeat anything.
+              This one needs a person to change something on our side, not
+              something I should touch automatically. I&rsquo;m bringing in a
+              specialist now with the full conversation, so you won&rsquo;t
+              have to explain it again.
             </p>
           </div>
-        </div>
-
-        {/* AI summary — internal note generated for the specialist, so
-            they can take over without re-reading the whole thread. Not
-            a chat bubble; styled as an inset hand-off card. */}
-        <div className="rounded-xl border border-fl-line bg-fl-surface-alt px-4 py-3.5">
-          <p className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-fl-muted">
-            <Sparkles className="h-3 w-3" />
-            AI summary · handed to the specialist
-          </p>
-          <p className="mt-2.5 text-sm leading-relaxed text-fl-ink">
-            18-month customer. Broadband drops every evening (~6&ndash;9pm),
-            survives a router reboot and a factory reset. Standard
-            troubleshooting exhausted; pattern points to line noise, not
-            in-home kit.
-          </p>
-          <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.18em] text-fl-muted">
-            Next steps
-          </p>
-          <ul className="mt-1.5 space-y-1 text-sm text-fl-ink-soft">
-            <li>1. Check the SNR margin / attenuation on the line profile.</li>
-            <li>2. If noise is confirmed, raise an Openreach SI2 fault.</li>
-            <li>3. Offer 4G backup if drops continue tonight.</li>
-          </ul>
         </div>
 
         {/* Bridge pill */}
@@ -176,7 +155,7 @@ function HandoverChat() {
               <span className="h-1 w-1 rounded-full bg-fl-muted" />
               <span className="h-1 w-1 rounded-full bg-fl-muted" />
             </span>
-            Finding someone
+            Finding an agent to help you
           </span>
         </div>
 
@@ -190,14 +169,53 @@ function HandoverChat() {
           </p>
           <div className="flex">
             <p className="max-w-[90%] rounded-2xl rounded-bl-sm border border-fl-line bg-fl-surface-alt px-3.5 py-2.5 text-sm leading-relaxed text-fl-ink">
-              Hi, I&rsquo;ve just read through the whole thread, so there&rsquo;s
-              no need to go over it again. Evening drops that survive a router
-              reboot usually point to line noise. Let&rsquo;s get this sorted,
-              roughly what time do they start?
+              Hi, I&rsquo;ve just had a look at your issue. Your domain&rsquo;s
+              mail routing didn&rsquo;t carry over cleanly in the migration, so
+              anything you send is being rejected upstream. The self-serve tool
+              can&rsquo;t rewrite this safely, so I&rsquo;m going to correct it
+              by hand on our side now. Give me two minutes and I&rsquo;ll
+              confirm the moment mail&rsquo;s flowing again.
             </p>
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+/**
+ * HandoverSummary — the behind-the-scenes context the AI passed to the
+ * specialist. Sits as its own block UNDERNEATH the conversation (not a
+ * chat bubble), framed the way the rest of the site describes what
+ * happens in the background: a mono label + a few simple lines.
+ */
+function HandoverSummary() {
+  const rows: Array<[string, string]> = [
+    ["Customer", "Jordan Ellis · Northgate Dental (business account)"],
+    ["Plan", "Business Fibre 500 + hosted email · 2-year customer"],
+    ["Issue", "Outbound mail bouncing since the migration on the 6th"],
+    ["Already tried", "Self-serve checker and a record resend, both failed"],
+    ["Needs", "Manual mail-routing correction (engineer access)"],
+  ];
+  return (
+    <div className="mt-4 rounded-2xl border border-fl-line bg-fl-surface-alt px-5 py-5">
+      <p className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-fl-muted">
+        <Sparkles className="h-3 w-3" />
+        What the AI handed over
+      </p>
+      <dl className="mt-3 space-y-2">
+        {rows.map(([k, v]) => (
+          <div
+            key={k}
+            className="grid grid-cols-[96px_1fr] gap-3 text-sm leading-relaxed"
+          >
+            <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-fl-muted">
+              {k}
+            </dt>
+            <dd className="text-fl-ink">{v}</dd>
+          </div>
+        ))}
+      </dl>
     </div>
   );
 }
