@@ -28,7 +28,11 @@ export const SITE = {
 } as const;
 
 export const NAV_LINKS = [
+  { href: "#wedge", label: "Why us" },
+  { href: "#agents-explainer", label: "AI agents" },
+  { href: "#handover", label: "Handover" },
   { href: "#departments", label: "Departments" },
+  { href: "#partners", label: "Integrations" },
   { href: "#how", label: "How it works" },
   { href: "#faq", label: "FAQ" },
 ] as const;

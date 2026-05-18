@@ -1,4 +1,10 @@
-import { History, MessageSquareMore, UserRound, ClipboardCheck } from "lucide-react";
+import {
+  History,
+  MessageSquareMore,
+  UserRound,
+  ClipboardCheck,
+  Sparkles,
+} from "lucide-react";
 import { Pill } from "@/components/brand/Pill";
 import { FadeUp } from "@/components/motion/FadeUp";
 
@@ -136,6 +142,30 @@ function HandoverChat() {
               whole conversation, so you won&rsquo;t need to repeat anything.
             </p>
           </div>
+        </div>
+
+        {/* AI summary — internal note generated for the specialist, so
+            they can take over without re-reading the whole thread. Not
+            a chat bubble; styled as an inset hand-off card. */}
+        <div className="rounded-xl border border-fl-line bg-fl-surface-alt px-4 py-3.5">
+          <p className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-fl-muted">
+            <Sparkles className="h-3 w-3" />
+            AI summary · handed to the specialist
+          </p>
+          <p className="mt-2.5 text-sm leading-relaxed text-fl-ink">
+            18-month customer. Broadband drops every evening (~6&ndash;9pm),
+            survives a router reboot and a factory reset. Standard
+            troubleshooting exhausted; pattern points to line noise, not
+            in-home kit.
+          </p>
+          <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.18em] text-fl-muted">
+            Next steps
+          </p>
+          <ul className="mt-1.5 space-y-1 text-sm text-fl-ink-soft">
+            <li>1. Check the SNR margin / attenuation on the line profile.</li>
+            <li>2. If noise is confirmed, raise an Openreach SI2 fault.</li>
+            <li>3. Offer 4G backup if drops continue tonight.</li>
+          </ul>
         </div>
 
         {/* Bridge pill */}

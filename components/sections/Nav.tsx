@@ -65,7 +65,7 @@ export function Nav() {
           {/* Desktop: full inline nav + Sign in + Book a call */}
           <nav
             aria-label="Primary"
-            className="hidden md:flex items-center gap-7"
+            className="hidden lg:flex items-center gap-5"
           >
             {NAV_LINKS.map((link) => (
               <a
@@ -78,7 +78,7 @@ export function Nav() {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <a
               href={SITE.dashboardUrl}
               target="_blank"
@@ -108,7 +108,7 @@ export function Nav() {
           </div>
 
           {/* Mobile: Menu + Book a call */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-2 lg:hidden">
             <a
               href={SITE.bookingUrl}
               target="_blank"
@@ -150,7 +150,7 @@ export function Nav() {
             animate={{ opacity: 1 }}
             exit={reduce ? undefined : { opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 bg-fl-bg text-white md:hidden"
+            className="fixed inset-0 z-50 bg-fl-bg text-white lg:hidden"
             role="dialog"
             aria-modal="true"
           >
