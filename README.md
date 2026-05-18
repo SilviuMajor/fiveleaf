@@ -48,7 +48,54 @@ Copy iterated in JSX (FAQ Q&A, stat tiles, process steps, services) lives in `co
 
 ## Deployment
 
-Vercel: connect the repo, push `main`. Domain `fiveleaf.co.uk` configured in Vercel project settings. Vercel Analytics auto-enables once the project is connected.
+Host on **Vercel** (built by the Next.js team; zero config for this app).
+
+### 1. Push to GitHub
+
+No git remote is set yet. Create an empty repo at github.com/new, then:
+
+```bash
+git remote add origin git@github.com:<you>/fiveleaf-landing.git
+git push -u origin main
+```
+
+### 2. Import to Vercel
+
+vercel.com → **Add New → Project** → import the repo. Framework, build
+command (`next build`) and output are auto-detected — change nothing.
+
+### 3. Set environment variables (Project → Settings → Environment Variables, scope = Production)
+
+| Variable | Value |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | `https://fiveleaf.co.uk` |
+| `NEXT_PUBLIC_BOOKING_URL` | `https://cal.com/silviumajor/fiveleaf-ai-discovery-call` |
+| `NEXT_PUBLIC_FEATURE_NAMED_CASE_STUDY` | `false` |
+| `NEXT_PUBLIC_AGENT_EMBED_URL` | _(blank)_ |
+| `NEXT_PUBLIC_AGENT_EMBED_PROVIDER` | _(blank)_ |
+| `NEXT_PUBLIC_LINKEDIN_URL` | _(blank, or LinkedIn URL to show footer link)_ |
+
+Deploy. A live `*.vercel.app` URL is ready in ~2 min.
+
+### 4. Domain
+
+Project → Settings → Domains → add `fiveleaf.co.uk` and `www.fiveleaf.co.uk`.
+At the DNS registrar set the records Vercel shows (apex A/ALIAS record +
+`www` CNAME → `cname.vercel-dns.com`). HTTPS is issued automatically once
+DNS propagates. Every push to `main` redeploys; PRs get preview URLs.
+
+### 5. Post-launch
+
+- Re-run Lighthouse against the production URL.
+- Add the domain to Google Search Console (`sitemap.xml` is auto-served at
+  `/sitemap.xml`).
+
+### Hidden routes
+
+`/case-study` and `/try-our-agent` are deployed but `noindex,nofollow` and
+unlinked — invisible to the public and search until launch. To launch
+either: delete the `robots` line in that route's `metadata` export and add
+a nav/footer link (or fold it back into `app/page.tsx`).
 
 ## Outstanding
 
