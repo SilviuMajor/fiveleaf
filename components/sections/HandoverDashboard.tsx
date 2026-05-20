@@ -175,11 +175,13 @@ export function HandoverDashboard() {
       <section id="handover" className="tds-section scroll-mt-24">
         <div className="tds-wrap">
           <div className="tds-eyebrow">Customer operations at scale</div>
-          <h2 className="tds-h2">Pick up any conversation, fully briefed.</h2>
+          <h2 className="tds-h2">Handover any conversation, fully briefed.</h2>
           <p className="tds-sub">
-            Every thread carries a live AI summary, the customer&rsquo;s full
-            context and one-click handover, so anyone on the team can step in
-            and resolve it fast.
+            Our AI agents are extremely competent, but we know the importance
+            of connecting customers with your team. So every Fiveleaf build
+            ships with a bespoke dashboard. Not just to monitor conversations,
+            but to take over with full context and give that extra level of
+            support.
           </p>
 
           <div className="tds-stage">

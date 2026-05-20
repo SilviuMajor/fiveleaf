@@ -214,7 +214,7 @@ function ThinkingTheatre() {
       initial={reduce ? false : { opacity: 0, scale: 0.97 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative overflow-hidden rounded-2xl border border-white/10 bg-fl-bg-soft/95 shadow-2xl backdrop-blur-md"
+      className="relative overflow-hidden rounded-2xl border border-white/10 bg-fl-bg-soft/95 shadow-2xl"
     >
       {/* Header strip */}
       <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5">

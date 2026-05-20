@@ -48,7 +48,7 @@ export function Nav() {
         className={cn(
           "fixed inset-x-0 top-0 z-40 transition-all duration-200",
           scrolled
-            ? "bg-fl-surface/85 backdrop-blur-md shadow-[0_1px_0_rgba(15,17,21,0.06)]"
+            ? "bg-fl-surface/92 shadow-[0_1px_0_rgba(15,17,21,0.06)]"
             : "bg-transparent",
         )}
       >

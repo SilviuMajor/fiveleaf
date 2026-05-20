@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
   },
 
   experimental: {
-    optimizePackageImports: ["lucide-react", "react-icons"],
+    optimizePackageImports: ["lucide-react", "react-icons", "framer-motion"],
   },
 
   // Legacy clients / crawlers that hardcode /favicon.ico get the
