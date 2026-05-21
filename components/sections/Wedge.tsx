@@ -71,7 +71,7 @@ export function Wedge() {
               Why we exist
             </Pill>
             <h2 className="font-display mt-5 text-balance text-3xl font-semibold leading-[1.1] tracking-tight md:text-5xl">
-              Two ways to add AI. Both have a catch.
+              Two ways to add AI. Both have a catch. So we built a third.
             </h2>
             <p className="mt-5 max-w-2xl text-base text-fl-ink-soft md:text-lg">
               Most operators reach the same fork. The first option needs a team you
