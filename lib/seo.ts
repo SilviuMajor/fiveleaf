@@ -7,9 +7,20 @@ export function organizationJsonLd() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: SITE.name,
+    legalName: SITE.registration.company,
     url: SITE.url,
     logo: `${SITE.url}/logo.svg`,
     description: SITE.description,
+    foundingDate: SITE.registration.incorporatedOn,
+    // Companies House registration number, in the schema.org PropertyValue
+    // pattern Google uses for jurisdiction-specific company identifiers.
+    // This is the same shape Google's own Organization markup docs show
+    // for VATID / LEI / company-registration numbers.
+    identifier: {
+      "@type": "PropertyValue",
+      propertyID: "UK Companies House",
+      value: SITE.registration.number,
+    },
     contactPoint: [
       {
         "@type": "ContactPoint",
