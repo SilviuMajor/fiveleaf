@@ -45,81 +45,116 @@ Here is the part of the retention story that most businesses miss entirely, beca
 The data linking response speed to retention is strong and direct. One analysis found that sub-one-hour email response achieved 71% customer retention, compared to just 48% for responses taking 24 hours, a 23-percentage-point retention gap created by speed alone. Satisfaction tracks the same curve. CSAT at a sub-five-minute response sits around 92%, falls to roughly 78% at one hour, and collapses to around 51% at 24 hours. One synthesis estimated that roughly every hour of delay costs about 1.7 CSAT points.
 
 <Diagram
-  label="A chart with response time on the horizontal axis and customer retention rate on the vertical axis. A descending curve passes through three plotted points: 92% retention at 5-minute response, 71% at one-hour response, and 48% at 24-hour response. The drop from 71% to 48% is highlighted as a 23-percentage-point retention gap."
-  caption="The same data, plotted properly. Twenty-three percentage points of retention sit between a one-hour reply and a one-day reply. Almost no business has this curve on the dashboards their board looks at."
+  label="A chart with response time on the horizontal axis and two falling curves: customer retention (top) and CSAT (bottom). Both curves drop sharply between 1 hour and 24 hours. Three reference points are marked: 5 minutes (best retention and CSAT), 1 hour (the customer expectation threshold), 24 hours (where most companies actually respond). A red danger zone marks the 12-hour-plus region where industry average response times land. The 23-percentage-point retention gap between 1-hour and 24-hour response is shaded and called out."
+  caption="Both retention and CSAT drop with response time, and they drop fastest where most companies actually operate. The 23-point retention cliff between a one-hour reply and a 24-hour reply is the lever almost no business is dashboarding."
   tone="rose"
 >
-  <svg viewBox="0 0 720 500" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+  <svg viewBox="0 0 720 640" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+    <defs>
+      <pattern id="grid-fl-ret" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+        <circle cx="1" cy="1" r="0.6" fill="#D4D4D4" />
+      </pattern>
+    </defs>
     <style>{`
-      .eyebrow { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.22em; }
-      .axis-lbl { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.2em; }
-      .axis-tick { font: 500 11px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; }
-      .pt-num { font: 600 28px Inter, system-ui, sans-serif; fill: #171717; letter-spacing: -0.02em; }
-      .pt-lbl { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.2em; }
-      .gap-num { font: 600 36px Inter, system-ui, sans-serif; fill: #8A4A47; letter-spacing: -0.03em; }
-      .gap-lbl { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; fill: #8A4A47; letter-spacing: 0.22em; }
-      .gap-sub { font: 400 12px Inter, system-ui, sans-serif; fill: #404040; }
-      .source { font: 400 11px Inter, system-ui, sans-serif; fill: #737373; font-style: italic; }
+      .ret-eyebrow { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.24em; }
+      .ret-axis { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #404040; letter-spacing: 0.22em; }
+      .ret-axis-sub { font: 400 11px Inter, system-ui, sans-serif; fill: #737373; }
+      .ret-tick { font: 500 10px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; }
+      .ret-pt-num { font: 600 22px Inter, system-ui, sans-serif; fill: #171717; letter-spacing: -0.02em; }
+      .ret-pt-sub { font: 500 10px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.18em; }
+      .ret-series { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 0.2em; }
+      .ret-gap-num { font: 600 64px Inter, system-ui, sans-serif; fill: #8A4A47; letter-spacing: -0.04em; }
+      .ret-gap-tag { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; fill: #8A4A47; letter-spacing: 0.22em; }
+      .ret-gap-sub { font: 400 12px Inter, system-ui, sans-serif; fill: #404040; }
+      .ret-danger { font: 600 9px 'JetBrains Mono', ui-monospace, monospace; fill: #8A4A47; letter-spacing: 0.22em; }
+      .ret-source { font: 400 11px Inter, system-ui, sans-serif; fill: #737373; font-style: italic; }
     `}</style>
 
+    <rect width="720" height="640" fill="url(#grid-fl-ret)" opacity="0.5" />
+
     {/* Header */}
-    <text x="40" y="32" className="eyebrow">RESPONSE SPEED vs RETENTION</text>
-    <line x1="40" y1="46" x2="680" y2="46" stroke="#E5E5E5" />
+    <text x="40" y="34" className="ret-eyebrow">RESPONSE TIME · RETENTION · CSAT</text>
+    <line x1="40" y1="48" x2="680" y2="48" stroke="#E5E5E5" />
+
+    {/* ---- Chart frame: x 120-680, y 100-440 ---- */}
 
     {/* Y axis */}
-    <line x1="100" y1="80" x2="100" y2="380" stroke="#171717" strokeWidth="1.5" />
-    <text x="40" y="84" className="axis-lbl">RETENTION ↑</text>
-
+    <line x1="120" y1="100" x2="120" y2="440" stroke="#171717" strokeWidth="1.5" />
     {/* Y ticks */}
-    <line x1="96" y1="100" x2="104" y2="100" stroke="#737373" />
-    <text x="60" y="104" className="axis-tick">100%</text>
-    <line x1="96" y1="190" x2="104" y2="190" stroke="#737373" />
-    <text x="68" y="194" className="axis-tick">75%</text>
-    <line x1="96" y1="280" x2="104" y2="280" stroke="#737373" />
-    <text x="68" y="284" className="axis-tick">50%</text>
-    <line x1="96" y1="370" x2="104" y2="370" stroke="#737373" />
-    <text x="68" y="374" className="axis-tick">25%</text>
+    <line x1="116" y1="100" x2="124" y2="100" stroke="#737373" />
+    <text x="92" y="104" className="ret-tick" textAnchor="end">100%</text>
+    <line x1="116" y1="185" x2="124" y2="185" stroke="#737373" />
+    <text x="92" y="189" className="ret-tick" textAnchor="end">75%</text>
+    <line x1="116" y1="270" x2="124" y2="270" stroke="#737373" />
+    <text x="92" y="274" className="ret-tick" textAnchor="end">50%</text>
+    <line x1="116" y1="355" x2="124" y2="355" stroke="#737373" />
+    <text x="92" y="359" className="ret-tick" textAnchor="end">25%</text>
+    <line x1="116" y1="440" x2="124" y2="440" stroke="#737373" />
+    <text x="92" y="444" className="ret-tick" textAnchor="end">0%</text>
 
     {/* X axis */}
-    <line x1="100" y1="380" x2="680" y2="380" stroke="#171717" strokeWidth="1.5" />
-    <text x="600" y="412" className="axis-lbl">RESPONSE TIME →</text>
-
+    <line x1="120" y1="440" x2="680" y2="440" stroke="#171717" strokeWidth="1.5" />
     {/* X ticks */}
-    <line x1="180" y1="376" x2="180" y2="384" stroke="#737373" />
-    <text x="160" y="402" className="axis-tick">5 min</text>
-    <line x1="380" y1="376" x2="380" y2="384" stroke="#737373" />
-    <text x="362" y="402" className="axis-tick">1 hour</text>
-    <line x1="580" y1="376" x2="580" y2="384" stroke="#737373" />
-    <text x="558" y="402" className="axis-tick">24 hours</text>
+    {/* 5 min = x 200, 1hr = 360, 12hr = 540, 24hr = 660 (approx log-style) */}
+    <line x1="200" y1="436" x2="200" y2="444" stroke="#737373" />
+    <text x="200" y="462" className="ret-tick" textAnchor="middle">5 MIN</text>
+    <line x1="360" y1="436" x2="360" y2="444" stroke="#737373" />
+    <text x="360" y="462" className="ret-tick" textAnchor="middle">1 HOUR</text>
+    <line x1="540" y1="436" x2="540" y2="444" stroke="#737373" />
+    <text x="540" y="462" className="ret-tick" textAnchor="middle">12 HOURS</text>
+    <line x1="660" y1="436" x2="660" y2="444" stroke="#737373" />
+    <text x="660" y="462" className="ret-tick" textAnchor="middle">24 HOURS</text>
 
-    {/* Curve through the three data points using a smooth bezier */}
-    {/* Points: (180, 124) at 92%, (380, 184) at 71%, (580, 280) at 48% */}
-    <path d="M 180 124 C 260 144, 320 168, 380 184 C 460 200, 520 240, 580 280" fill="none" stroke="#171717" strokeWidth="2" />
+    {/* Industry-average danger zone: 12hr+ */}
+    <rect x="540" y="100" width="140" height="340" fill="#EFDDE0" opacity="0.6" />
+    <text x="610" y="124" className="ret-danger" textAnchor="middle">INDUSTRY AVERAGE: 12+ HOURS</text>
 
-    {/* The 23-pt gap shaded region */}
-    <rect x="380" y="184" width="200" height="96" fill="#EFDDE0" opacity="0.55" />
-    <line x1="380" y1="184" x2="580" y2="184" stroke="#8A4A47" strokeWidth="1" strokeDasharray="3 3" />
-    <line x1="380" y1="280" x2="580" y2="280" stroke="#8A4A47" strokeWidth="1" strokeDasharray="3 3" />
+    {/* Axis labels */}
+    <text x="56" y="200" className="ret-axis" transform="rotate(-90 56 200)">RETENTION & CSAT ↑</text>
+    <text x="56" y="222" className="ret-axis-sub" transform="rotate(-90 56 222)">how many customers stay, how happy they are</text>
+    <text x="120" y="498" className="ret-axis">RESPONSE TIME →</text>
+    <text x="120" y="514" className="ret-axis-sub">from instant to a day later</text>
 
-    {/* Data point 1 — 92% */}
-    <circle cx="180" cy="124" r="6" fill="#171717" />
-    <text x="180" y="106" textAnchor="middle" className="pt-num">92%</text>
+    {/* CSAT curve (dashed, lighter) — goes through (200,128) at 92%, (360,189) at 78%, (660,266) at 51% */}
+    {/* Series label */}
+    <line x1="380" y1="220" x2="404" y2="220" stroke="#1F4060" strokeWidth="2" strokeDasharray="4 3" />
+    <text x="412" y="224" className="ret-series" style={{ fill: "#1F4060" }}>CSAT</text>
 
-    {/* Data point 2 — 71% */}
-    <circle cx="380" cy="184" r="6" fill="#171717" />
-    <text x="380" y="166" textAnchor="middle" className="pt-num">71%</text>
+    <path d="M 200 128 C 270 150, 320 175, 360 189 C 460 210, 560 240, 660 266" fill="none" stroke="#1F4060" strokeWidth="2" strokeDasharray="4 3" />
 
-    {/* Data point 3 — 48% */}
-    <circle cx="580" cy="280" r="6" fill="#171717" />
-    <text x="580" y="262" textAnchor="middle" className="pt-num">48%</text>
+    {/* Retention curve (solid, ink) — (200,134) at 92%, (360,199) at 71%, (660,278) at 48% */}
+    <line x1="380" y1="240" x2="404" y2="240" stroke="#171717" strokeWidth="2.5" />
+    <text x="412" y="244" className="ret-series" style={{ fill: "#171717" }}>RETENTION</text>
 
-    {/* Gap callout — bottom right */}
-    <line x1="600" y1="232" x2="640" y2="232" stroke="#8A4A47" strokeWidth="1.5" />
-    <text x="600" y="448" className="gap-lbl">23-POINT GAP</text>
-    <text x="600" y="472" className="gap-sub">from response time alone</text>
+    <path d="M 200 134 C 270 158, 320 184, 360 199 C 460 225, 560 254, 660 278" fill="none" stroke="#171717" strokeWidth="2.5" />
+
+    {/* The 23-point gap shaded region between retention values at 1hr and 24hr */}
+    <line x1="360" y1="199" x2="660" y2="199" stroke="#8A4A47" strokeDasharray="3 3" />
+    <line x1="360" y1="278" x2="660" y2="278" stroke="#8A4A47" strokeDasharray="3 3" />
+    <line x1="660" y1="199" x2="660" y2="278" stroke="#8A4A47" strokeWidth="1.5" />
+
+    {/* Data point markers — Retention only, large */}
+    <circle cx="200" cy="134" r="6" fill="#171717" />
+    <text x="200" y="112" className="ret-pt-num" textAnchor="middle">92</text>
+    <text x="200" y="98" className="ret-pt-sub" textAnchor="middle">RETENTION %</text>
+
+    <circle cx="360" cy="199" r="6" fill="#171717" />
+    <text x="360" y="177" className="ret-pt-num" textAnchor="middle">71</text>
+
+    <circle cx="660" cy="278" r="6" fill="#171717" />
+    <text x="660" y="256" className="ret-pt-num" textAnchor="middle">48</text>
+
+    {/* Gap callout — bottom-right, big editorial moment */}
+    <g transform="translate(40, 540)">
+      <text x="0" y="0" className="ret-gap-tag">THE 23-POINT GAP</text>
+      <text x="0" y="62" className="ret-gap-num">23pp</text>
+      <text x="160" y="34" className="ret-gap-sub">of retention lost</text>
+      <text x="160" y="52" className="ret-gap-sub">between a one-hour reply and</text>
+      <text x="160" y="70" className="ret-gap-sub">a 24-hour reply. Speed alone.</text>
+    </g>
 
     {/* Footnote */}
-    <line x1="40" y1="486" x2="680" y2="486" stroke="#E5E5E5" />
+    <line x1="40" y1="616" x2="680" y2="616" stroke="#E5E5E5" />
   </svg>
 </Diagram>
 

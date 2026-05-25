@@ -49,75 +49,102 @@ This is not a matter of degree. It is a different category of thing. If you take
 A production agent is not a single program. It is four distinct layers doing four distinct jobs. Get all four right and the agent works. Get three right and it fails in ways that are maddening to debug, because the failure usually shows up as "the AI said something wrong" when the real problem was three layers down.
 
 <Diagram
-  label="The four layers of a production conversational AI agent stacked vertically: Conversational, Knowledge, Integration and Handover. Each layer is annotated with what it does and what fails when it is missing."
-  caption="A working conversational AI agent is four layers stacked. The model handles the top layer alone. The other three are where most of the build effort lives — and where most failures hide."
+  label="A cross-section of a working conversational AI agent. A customer message enters at the top, flows through four named layers in sequence (Conversational, Knowledge, Integration, Handover), and exits at the bottom as a logged action. Each layer shows a concrete example of what runs there in production."
+  caption="The same customer message traced through the four layers it has to touch before becoming a resolved interaction. The model alone gets you the top inch. The other three are where every failed deployment was failing."
   tone="neutral"
 >
-  <svg viewBox="0 0 720 460" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+  <svg viewBox="0 0 720 720" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+    <defs>
+      {/* Dotted background grid pattern */}
+      <pattern id="grid-fl-4layer" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+        <circle cx="1" cy="1" r="0.6" fill="#D4D4D4" />
+      </pattern>
+      {/* Soft drop shadow for layer cards */}
+      <filter id="shadow-fl-4layer" x="-10%" y="-10%" width="120%" height="120%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="2" />
+        <feOffset dx="0" dy="2" result="off" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.08" /></feComponentTransfer>
+        <feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge>
+      </filter>
+    </defs>
     <style>{`
-      .eyebrow { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.22em; }
-      .num { font: 600 38px Inter, system-ui, sans-serif; fill: #171717; letter-spacing: -0.03em; }
-      .layer-name { font: 600 19px Inter, system-ui, sans-serif; fill: #171717; letter-spacing: -0.01em; }
-      .layer-sub { font: 400 13px Inter, system-ui, sans-serif; fill: #404040; }
-      .fail-lbl { font: 600 9px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.22em; }
-      .fail-text { font: 500 12px Inter, system-ui, sans-serif; fill: #404040; }
-      .footnote { font: 400 12px Inter, system-ui, sans-serif; fill: #737373; font-style: italic; }
+      .fl-eyebrow { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.24em; }
+      .fl-msg { font: 500 14px Inter, system-ui, sans-serif; fill: #FFFFFF; }
+      .fl-msg-sub { font: 500 9px 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 0.2em; }
+      .fl-num { font: 600 72px Inter, system-ui, sans-serif; letter-spacing: -0.04em; }
+      .fl-layer-h { font: 600 22px Inter, system-ui, sans-serif; fill: #171717; letter-spacing: -0.01em; }
+      .fl-layer-sub { font: 400 13px Inter, system-ui, sans-serif; fill: #404040; }
+      .fl-tag { font: 600 9px 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 0.22em; }
+      .fl-cell { font: 500 11px Inter, system-ui, sans-serif; fill: #171717; }
+      .fl-cell-sub { font: 400 10px Inter, system-ui, sans-serif; fill: #737373; }
+      .fl-resolved { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; fill: #2C5340; letter-spacing: 0.2em; }
     `}</style>
 
+    {/* Background dot grid */}
+    <rect width="720" height="720" fill="url(#grid-fl-4layer)" opacity="0.5" />
+
     {/* Header */}
-    <text x="40" y="34" className="eyebrow">FOUR LAYERS · WHAT EACH ONE DOES</text>
+    <text x="40" y="34" className="fl-eyebrow">ANATOMY · ONE MESSAGE THROUGH FOUR LAYERS</text>
     <line x1="40" y1="48" x2="680" y2="48" stroke="#E5E5E5" />
 
-    {/* Dashed spine connecting the four layers on the left */}
-    <line x1="56" y1="88" x2="56" y2="400" stroke="#D4D4D4" strokeWidth="1" strokeDasharray="2 3" />
-
-    {/* Layer 01 — Sand · Conversational */}
-    <g transform="translate(0, 72)">
-      <rect x="50" y="6" width="3" height="60" fill="#D6B976" />
-      <text x="78" y="44" className="num">01</text>
-      <text x="148" y="32" className="layer-name">Conversational</text>
-      <text x="148" y="54" className="layer-sub">Understands intent, holds context, manages tone</text>
-      <line x1="460" y1="20" x2="460" y2="58" stroke="#E5E5E5" />
-      <text x="476" y="32" className="fail-lbl">WITHOUT IT</text>
-      <text x="476" y="56" className="fail-text">A decision-tree bot</text>
+    {/* INPUT — customer message bubble at the top */}
+    <g transform="translate(0, 64)">
+      <text x="40" y="14" className="fl-msg-sub" style={{ fill: "#737373" }}>INBOUND · WHATSAPP · 14:06</text>
+      <rect x="40" y="22" width="280" height="44" rx="14" fill="#171717" filter="url(#shadow-fl-4layer)" />
+      <text x="58" y="50" className="fl-msg">"I want to cancel."</text>
+      {/* Arrow down into layer 01 */}
+      <line x1="180" y1="78" x2="180" y2="110" stroke="#171717" strokeWidth="1.5" />
+      <polygon points="174,108 180,120 186,108" fill="#171717" />
     </g>
 
-    {/* Layer 02 — Sky · Knowledge */}
-    <g transform="translate(0, 158)">
-      <rect x="50" y="6" width="3" height="60" fill="#7AAFD1" />
-      <text x="78" y="44" className="num">02</text>
-      <text x="148" y="32" className="layer-name">Knowledge</text>
-      <text x="148" y="54" className="layer-sub">Your live policies, prices, troubleshooting, retrieved</text>
-      <line x1="460" y1="20" x2="460" y2="58" stroke="#E5E5E5" />
-      <text x="476" y="32" className="fail-lbl">WITHOUT IT</text>
-      <text x="476" y="56" className="fail-text">A generic logo-wearing bot</text>
+    {/* LAYER 01 — Conversational (sand) */}
+    <g transform="translate(0, 200)">
+      <rect x="40" y="0" width="640" height="96" rx="14" fill="#F0E5D5" filter="url(#shadow-fl-4layer)" />
+      <text x="64" y="62" className="fl-num" style={{ fill: "#5C4830" }}>01</text>
+      <line x1="180" y1="20" x2="180" y2="76" stroke="#D6B976" strokeWidth="2" />
+      <text x="200" y="34" className="fl-tag" style={{ fill: "#5C4830" }}>CONVERSATIONAL</text>
+      <text x="200" y="56" className="fl-layer-h">Reads the message, holds context</text>
+      <text x="200" y="78" className="fl-layer-sub">"Cancel" → intent = cancellation · sentiment = calm · channel = WhatsApp</text>
     </g>
 
-    {/* Layer 03 — Neutral / Ink · Integration */}
-    <g transform="translate(0, 244)">
-      <rect x="50" y="6" width="3" height="60" fill="#171717" />
-      <text x="78" y="44" className="num">03</text>
-      <text x="148" y="32" className="layer-name">Integration</text>
-      <text x="148" y="54" className="layer-sub">Reads and writes to your CRM, billing, helpdesk, telephony</text>
-      <line x1="460" y1="20" x2="460" y2="58" stroke="#E5E5E5" />
-      <text x="476" y="32" className="fail-lbl">WITHOUT IT</text>
-      <text x="476" y="56" className="fail-text">A bot that can talk but not act</text>
+    {/* LAYER 02 — Knowledge (sky) */}
+    <g transform="translate(0, 312)">
+      <rect x="40" y="0" width="640" height="96" rx="14" fill="#DDE7EF" filter="url(#shadow-fl-4layer)" />
+      <text x="64" y="62" className="fl-num" style={{ fill: "#1F4060" }}>02</text>
+      <line x1="180" y1="20" x2="180" y2="76" stroke="#7AAFD1" strokeWidth="2" />
+      <text x="200" y="34" className="fl-tag" style={{ fill: "#1F4060" }}>KNOWLEDGE</text>
+      <text x="200" y="56" className="fl-layer-h">Pulls the context to answer well</text>
+      <text x="200" y="78" className="fl-layer-sub">Customer record · 18mo · 450Mb plan · retention playbook KB-RET-204</text>
     </g>
 
-    {/* Layer 04 — Sage · Handover */}
-    <g transform="translate(0, 330)">
-      <rect x="50" y="6" width="3" height="60" fill="#7FAA8C" />
-      <text x="78" y="44" className="num">04</text>
-      <text x="148" y="32" className="layer-name">Handover</text>
-      <text x="148" y="54" className="layer-sub">Escalates with confidence, routes right, hands over context</text>
-      <line x1="460" y1="20" x2="460" y2="58" stroke="#E5E5E5" />
-      <text x="476" y="32" className="fail-lbl">WITHOUT IT</text>
-      <text x="476" y="56" className="fail-text">Customers stranded in loops</text>
+    {/* LAYER 03 — Integration (ink) */}
+    <g transform="translate(0, 424)">
+      <rect x="40" y="0" width="640" height="96" rx="14" fill="#171717" filter="url(#shadow-fl-4layer)" />
+      <text x="64" y="62" className="fl-num" style={{ fill: "#FAFAFA" }}>03</text>
+      <line x1="180" y1="20" x2="180" y2="76" stroke="#FFFFFF" strokeWidth="2" />
+      <text x="200" y="34" className="fl-tag" style={{ fill: "#FFFFFF", opacity: 0.7 }}>INTEGRATION</text>
+      <text x="200" y="56" className="fl-layer-h" style={{ fill: "#FFFFFF" }}>Reads &amp; writes in your stack</text>
+      <text x="200" y="78" className="fl-layer-sub" style={{ fill: "#FFFFFF", opacity: 0.7 }}>Checks 900Mb availability at GU2 7XH · logs activity in HubSpot</text>
     </g>
 
-    {/* Footnote */}
-    <line x1="40" y1="412" x2="680" y2="412" stroke="#E5E5E5" />
-    <text x="40" y="436" className="footnote">The model is the easy part. These four are where the work lives.</text>
+    {/* LAYER 04 — Handover (sage) */}
+    <g transform="translate(0, 536)">
+      <rect x="40" y="0" width="640" height="96" rx="14" fill="#DFEADF" filter="url(#shadow-fl-4layer)" />
+      <text x="64" y="62" className="fl-num" style={{ fill: "#2C5340" }}>04</text>
+      <line x1="180" y1="20" x2="180" y2="76" stroke="#7FAA8C" strokeWidth="2" />
+      <text x="200" y="34" className="fl-tag" style={{ fill: "#2C5340" }}>HANDOVER</text>
+      <text x="200" y="56" className="fl-layer-h">Replies, or escalates with context</text>
+      <text x="200" y="78" className="fl-layer-sub">87% confident · replies in-thread · no human needed</text>
+    </g>
+
+    {/* OUTPUT — resolved tag at the bottom */}
+    <g transform="translate(0, 656)">
+      <line x1="360" y1="-8" x2="360" y2="14" stroke="#171717" strokeWidth="1.5" />
+      <polygon points="354,12 360,24 366,12" fill="#171717" />
+      <rect x="220" y="32" width="280" height="36" rx="18" fill="#171717" />
+      <circle cx="244" cy="50" r="4" fill="#7FAA8C" />
+      <text x="260" y="54" className="fl-resolved" style={{ fill: "#FFFFFF" }}>RESOLVED · 2.4s · LOGGED IN CRM</text>
+    </g>
   </svg>
 </Diagram>
 

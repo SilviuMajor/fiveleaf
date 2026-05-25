@@ -41,62 +41,90 @@ This is why serious practitioners insist that containment be read alongside two 
 Read together, these three form what one analysis calls the automation quality triangle: containment, CSAT and recontact as an inseparable set. Rising resolution with stable satisfaction confirms genuinely effective automation. Rising resolution with falling satisfaction signals containment masquerading as resolution. Any vendor who shows you a containment number without the other two is showing you half a picture, and usually the flattering half.
 
 <Diagram
-  label="A Venn diagram of three overlapping circles labelled Containment, CSAT and Recontact. Where all three overlap is the only zone that represents real automation quality. The non-overlapping zones are labelled with the failure modes a single-metric read leaves you in."
-  caption="The automation quality triangle as a Venn. A high containment number alone can sit in any of three different failure zones — the only safe read is where all three overlap."
+  label="A two-by-two quadrant chart. Containment on the horizontal axis from low to high; CSAT on the vertical axis from low to high. Each of the four quadrants is labelled with the specific failure or success mode an agent in that quadrant represents. The top-right quadrant — high containment and high CSAT — is highlighted as the only good zone, with a note that this only counts if recontact rate is also low."
+  caption="The automation quality landscape as a 2×2. A containment number alone can sit in any of these four boxes; only one of them is good. The recontact rate is the tiebreaker for whether the top-right zone is real or fake."
   tone="sky"
 >
-  <svg viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+  <svg viewBox="0 0 720 620" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+    <defs>
+      <pattern id="grid-fl-perf" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+        <circle cx="1" cy="1" r="0.6" fill="#D4D4D4" />
+      </pattern>
+    </defs>
     <style>{`
-      .eyebrow { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.22em; }
-      .circle-h { font: 600 18px Inter, system-ui, sans-serif; fill: #171717; letter-spacing: -0.01em; }
-      .circle-q { font: 400 12px Inter, system-ui, sans-serif; fill: #404040; font-style: italic; }
-      .zone-lbl { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 0.2em; }
-      .zone-fail { font: 600 12px Inter, system-ui, sans-serif; }
-      .centre-tag { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; fill: #2C5340; letter-spacing: 0.22em; }
-      .centre-h { font: 600 14px Inter, system-ui, sans-serif; fill: #2C5340; letter-spacing: -0.01em; }
+      .pf-eyebrow { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.24em; }
+      .pf-axis { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #404040; letter-spacing: 0.22em; }
+      .pf-axis-sub { font: 400 11px Inter, system-ui, sans-serif; fill: #737373; }
+      .pf-quad-tag { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 0.22em; }
+      .pf-quad-h { font: 600 18px Inter, system-ui, sans-serif; letter-spacing: -0.01em; }
+      .pf-quad-sub { font: 400 12px Inter, system-ui, sans-serif; }
+      .pf-quad-quote { font: 400 11px Inter, system-ui, sans-serif; font-style: italic; }
+      .pf-good-tag { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; fill: #2C5340; letter-spacing: 0.24em; }
+      .pf-good-h { font: 600 20px Inter, system-ui, sans-serif; fill: #171717; letter-spacing: -0.01em; }
+      .pf-recontact { font: 600 9px 'JetBrains Mono', ui-monospace, monospace; fill: #FFFFFF; letter-spacing: 0.2em; }
+      .pf-foot { font: 400 12px Inter, system-ui, sans-serif; fill: #737373; font-style: italic; }
     `}</style>
 
+    <rect width="720" height="620" fill="url(#grid-fl-perf)" opacity="0.5" />
+
     {/* Header */}
-    <text x="40" y="32" className="eyebrow">THE QUALITY TRIANGLE · READ TOGETHER, NEVER ALONE</text>
-    <line x1="40" y1="46" x2="680" y2="46" stroke="#E5E5E5" />
+    <text x="40" y="34" className="pf-eyebrow">QUALITY MATRIX · WHAT THE NUMBERS ACTUALLY MEAN</text>
+    <line x1="40" y1="48" x2="680" y2="48" stroke="#E5E5E5" />
 
-    {/* Three overlapping circles — translucent fills */}
-    <circle cx="360" cy="180" r="130" fill="#DDE7EF" opacity="0.55" />
-    <circle cx="280" cy="320" r="130" fill="#F0E5D5" opacity="0.55" />
-    <circle cx="440" cy="320" r="130" fill="#EFDDE0" opacity="0.55" />
+    {/* 2x2 quadrants. Chart bounds: x 120-680, y 100-500. */}
+    {/* TOP-LEFT — low containment, high CSAT (sand) */}
+    <rect x="120" y="100" width="280" height="200" fill="#F0E5D5" />
+    <text x="136" y="124" className="pf-quad-tag" style={{ fill: "#5C4830" }}>POLITE BUT UNHELPFUL</text>
+    <text x="136" y="156" className="pf-quad-h" style={{ fill: "#5C4830" }}>Low containment.</text>
+    <text x="136" y="178" className="pf-quad-h" style={{ fill: "#5C4830" }}>High CSAT.</text>
+    <text x="136" y="208" className="pf-quad-sub" style={{ fill: "#5C4830" }}>Customers like talking to the bot.</text>
+    <text x="136" y="226" className="pf-quad-sub" style={{ fill: "#5C4830" }}>It just doesn't solve anything.</text>
+    <text x="136" y="262" className="pf-quad-quote" style={{ fill: "#5C4830" }}>"Lovely chat. Now connect me to a human."</text>
 
-    {/* Circle labels */}
-    <text x="360" y="84" textAnchor="middle" className="circle-h">Containment</text>
-    <text x="360" y="102" textAnchor="middle" className="circle-q">Did the AI handle it?</text>
+    {/* TOP-RIGHT — high containment, high CSAT (sage) — THE GOOD ZONE */}
+    <rect x="400" y="100" width="280" height="200" fill="#DFEADF" />
+    <text x="416" y="124" className="pf-good-tag">★  REAL RESOLUTION</text>
+    <text x="416" y="156" className="pf-good-h">High containment.</text>
+    <text x="416" y="178" className="pf-good-h">High CSAT.</text>
+    <text x="416" y="208" className="pf-quad-sub" style={{ fill: "#2C5340" }}>The agent handles it and the</text>
+    <text x="416" y="226" className="pf-quad-sub" style={{ fill: "#2C5340" }}>customer leaves happy.</text>
+    {/* Recontact rate badge — the tiebreaker */}
+    <rect x="416" y="246" width="200" height="36" rx="18" fill="#171717" />
+    <circle cx="432" cy="264" r="4" fill="#7FAA8C" />
+    <text x="446" y="268" className="pf-recontact">+ LOW RECONTACT = REAL</text>
 
-    <text x="150" y="360" textAnchor="middle" className="circle-h">CSAT</text>
-    <text x="150" y="378" textAnchor="middle" className="circle-q">Did satisfaction hold?</text>
+    {/* BOTTOM-LEFT — low containment, low CSAT (rose) */}
+    <rect x="120" y="300" width="280" height="200" fill="#EFDDE0" />
+    <text x="136" y="324" className="pf-quad-tag" style={{ fill: "#8A4A47" }}>OBVIOUSLY BROKEN</text>
+    <text x="136" y="356" className="pf-quad-h" style={{ fill: "#8A4A47" }}>Low containment.</text>
+    <text x="136" y="378" className="pf-quad-h" style={{ fill: "#8A4A47" }}>Low CSAT.</text>
+    <text x="136" y="408" className="pf-quad-sub" style={{ fill: "#8A4A47" }}>Doesn't resolve. Customers know.</text>
+    <text x="136" y="426" className="pf-quad-sub" style={{ fill: "#8A4A47" }}>Honest about its failure, at least.</text>
+    <text x="136" y="462" className="pf-quad-quote" style={{ fill: "#8A4A47" }}>"How can I help?" → "Just give me a person."</text>
 
-    <text x="572" y="360" textAnchor="middle" className="circle-h">Recontact</text>
-    <text x="572" y="378" textAnchor="middle" className="circle-q">Did they come back?</text>
+    {/* BOTTOM-RIGHT — high containment, low CSAT (sky) — THE TRAP */}
+    <rect x="400" y="300" width="280" height="200" fill="#DDE7EF" />
+    <text x="416" y="324" className="pf-quad-tag" style={{ fill: "#1F4060" }}>⚠  THE DEFLECTION WALL</text>
+    <text x="416" y="356" className="pf-quad-h" style={{ fill: "#1F4060" }}>High containment.</text>
+    <text x="416" y="378" className="pf-quad-h" style={{ fill: "#1F4060" }}>Low CSAT.</text>
+    <text x="416" y="408" className="pf-quad-sub" style={{ fill: "#1F4060" }}>The most-quoted vendor number.</text>
+    <text x="416" y="426" className="pf-quad-sub" style={{ fill: "#1F4060" }}>The most likely to be a wall, not</text>
+    <text x="416" y="444" className="pf-quad-sub" style={{ fill: "#1F4060" }}>a working agent.</text>
+    <text x="416" y="476" className="pf-quad-quote" style={{ fill: "#1F4060" }}>Customers gave up, didn't get resolved.</text>
 
-    {/* Failure-mode labels in single-metric zones */}
-    {/* Top only — high containment alone */}
-    <text x="360" y="155" textAnchor="middle" className="zone-lbl" style={{ fill: "#1F4060" }}>HIGH CONTAINMENT ONLY</text>
-    <text x="360" y="174" textAnchor="middle" className="zone-fail" style={{ fill: "#1F4060" }}>could be a wall</text>
+    {/* Axis labels */}
+    <text x="56" y="200" className="pf-axis" transform="rotate(-90 56 200)">CSAT ↑</text>
+    <text x="56" y="224" className="pf-axis-sub" transform="rotate(-90 56 224)">did satisfaction hold?</text>
+    <text x="120" y="540" className="pf-axis">CONTAINMENT →</text>
+    <text x="120" y="556" className="pf-axis-sub">did the AI handle it without escalating?</text>
 
-    {/* Bottom-left only — CSAT alone */}
-    <text x="208" y="338" textAnchor="middle" className="zone-lbl" style={{ fill: "#5C4830" }}>CSAT ONLY</text>
-    <text x="208" y="356" textAnchor="middle" className="zone-fail" style={{ fill: "#5C4830" }}>polite but unhelpful</text>
-
-    {/* Bottom-right only — Recontact alone */}
-    <text x="510" y="338" textAnchor="middle" className="zone-lbl" style={{ fill: "#8A4A47" }}>RECONTACT ONLY</text>
-    <text x="510" y="356" textAnchor="middle" className="zone-fail" style={{ fill: "#8A4A47" }}>can't tell why</text>
-
-    {/* Centre — all three overlap */}
-    <ellipse cx="360" cy="260" rx="80" ry="60" fill="#171717" />
-    <text x="360" y="252" textAnchor="middle" className="centre-tag" style={{ fill: "#DFEADF" }}>ALL THREE</text>
-    <text x="360" y="272" textAnchor="middle" className="centre-h" style={{ fill: "#FFFFFF" }}>real resolution</text>
-    <text x="360" y="290" textAnchor="middle" className="circle-q" style={{ fill: "#FFFFFF", opacity: 0.7 }}>the only safe read</text>
+    {/* Axis cross */}
+    <line x1="400" y1="100" x2="400" y2="500" stroke="#171717" strokeWidth="1.5" />
+    <line x1="120" y1="300" x2="680" y2="300" stroke="#171717" strokeWidth="1.5" />
 
     {/* Footnote */}
-    <line x1="40" y1="478" x2="680" y2="478" stroke="#E5E5E5" />
-    <text x="40" y="500" className="circle-q">Any containment figure shown without CSAT and recontact is half a picture, and usually the flattering half.</text>
+    <line x1="40" y1="582" x2="680" y2="582" stroke="#E5E5E5" />
+    <text x="40" y="604" className="pf-foot">Recontact rate is the tiebreaker. Real resolution = high containment + high CSAT + low recontact.</text>
   </svg>
 </Diagram>
 
