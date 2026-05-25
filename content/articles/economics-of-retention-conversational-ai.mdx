@@ -44,6 +44,47 @@ Here is the part of the retention story that most businesses miss entirely, beca
 
 The data linking response speed to retention is strong and direct. One analysis found that sub-one-hour email response achieved 71% customer retention, compared to just 48% for responses taking 24 hours, a 23-percentage-point retention gap created by speed alone. Satisfaction tracks the same curve. CSAT at a sub-five-minute response sits around 92%, falls to roughly 78% at one hour, and collapses to around 51% at 24 hours. One synthesis estimated that roughly every hour of delay costs about 1.7 CSAT points.
 
+<Diagram
+  label="A descending bar chart showing customer retention falling from 71% for sub-one-hour responses to 48% for 24-hour responses. A 23-percentage-point retention gap is driven by response speed alone."
+  caption="The hidden retention lever. 23 percentage points of customer retention sit between a one-hour reply and a one-day reply. Most businesses do not have this on any dashboard they look at."
+  tone="rose"
+>
+  <svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+    <style>{`
+      .axis-lbl { font: 500 11px Inter, system-ui, sans-serif; fill: #5C6068; }
+      .axis-num { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; fill: #5C6068; }
+      .bar-num { font: 700 22px 'JetBrains Mono', ui-monospace, monospace; fill: #FFFFFF; }
+      .bar-lbl { font: 500 12px Inter, system-ui, sans-serif; fill: #0A0A0A; }
+      .gap { font: 600 13px Inter, system-ui, sans-serif; fill: #B45656; }
+    `}</style>
+    {/* Y axis ticks (just two) */}
+    <text x="40" y="76" className="axis-num">100%</text>
+    <text x="48" y="266" className="axis-num">0%</text>
+    <line x1="84" y1="70" x2="84" y2="260" stroke="#E5E5E0" strokeWidth="1" />
+
+    {/* Bar 1: sub-1 hour — 71% */}
+    {/* Bar fills upward; full height = 190px (260 - 70). 71% = 135px tall, starts at 260-135 = 125 */}
+    <rect x="120" y="125" width="100" height="135" rx="8" fill="#0A0A0A" />
+    <text x="170" y="160" textAnchor="middle" className="bar-num">71%</text>
+    <text x="170" y="282" textAnchor="middle" className="bar-lbl">Reply &lt; 1 hour</text>
+
+    {/* Bar 2: 24 hours — 48% */}
+    {/* 48% = 91px tall, starts at 260-91 = 169 */}
+    <rect x="260" y="169" width="100" height="91" rx="8" fill="#0A0A0A" opacity="0.55" />
+    <text x="310" y="204" textAnchor="middle" className="bar-num">48%</text>
+    <text x="310" y="282" textAnchor="middle" className="bar-lbl">Reply &gt; 24 hours</text>
+
+    {/* Gap callout */}
+    <line x1="400" y1="125" x2="440" y2="125" stroke="#B45656" strokeWidth="1.5" />
+    <line x1="400" y1="169" x2="440" y2="169" stroke="#B45656" strokeWidth="1.5" />
+    <line x1="440" y1="125" x2="440" y2="169" stroke="#B45656" strokeWidth="1.5" />
+    <text x="460" y="143" className="gap">23-point</text>
+    <text x="460" y="161" className="gap">retention gap</text>
+    <text x="460" y="183" className="axis-lbl">from response speed alone</text>
+  </svg>
+</Diagram>
+
+
 And the bar is rising. Around 89% of customers expect a response within an hour, and 88% say they expect faster responses than they did a year ago. Meanwhile the average company takes over 12 hours to respond to a customer email, and a majority of businesses do not respond the same day at all. The gap between what customers expect and what businesses deliver has widened to more than 11 hours.
 
 The retention implication is brutal in its simplicity. More than half of customers say they will stop buying from a company after a slow support experience, and over half will switch to a competitor after a single bad experience involving slow response. Speed is not a service nicety. It is a retention mechanism, and most businesses are losing customers through it without ever attributing the loss to it.

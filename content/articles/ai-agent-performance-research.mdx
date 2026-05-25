@@ -40,6 +40,39 @@ This is why serious practitioners insist that containment be read alongside two 
 
 Read together, these three form what one analysis calls the automation quality triangle: containment, CSAT and recontact as an inseparable set. Rising resolution with stable satisfaction confirms genuinely effective automation. Rising resolution with falling satisfaction signals containment masquerading as resolution. Any vendor who shows you a containment number without the other two is showing you half a picture, and usually the flattering half.
 
+<Diagram
+  label="Triangle diagram showing three interlinked performance metrics for a conversational AI agent: containment, CSAT and recontact. The three labels sit at the corners of a triangle to indicate they must always be read together."
+  caption="The automation quality triangle. A containment number on its own can hide either real resolution or customer frustration. Read it alongside CSAT and recontact, or do not read it at all."
+  tone="sage"
+>
+  <svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+    <style>{`
+      .corner-h { font: 700 16px Inter, system-ui, sans-serif; fill: #0A0A0A; letter-spacing: 0.02em; }
+      .corner-sub { font: 400 12px Inter, system-ui, sans-serif; fill: #5C6068; }
+      .centre { font: 600 12px Inter, system-ui, sans-serif; fill: #5C6068; font-style: italic; }
+    `}</style>
+    {/* Triangle */}
+    <polygon points="360,40 80,280 640,280" fill="none" stroke="#0A0A0A" strokeWidth="1.5" strokeDasharray="2 4" />
+    {/* Centre label */}
+    <text x="360" y="186" textAnchor="middle" className="centre">Read together,</text>
+    <text x="360" y="206" textAnchor="middle" className="centre">never in isolation</text>
+    {/* Top: Containment */}
+    <circle cx="360" cy="40" r="6" fill="#0A0A0A" />
+    <text x="360" y="22" textAnchor="middle" className="corner-h">Containment</text>
+    {/* Bottom-left: CSAT */}
+    <circle cx="80" cy="280" r="6" fill="#0A0A0A" />
+    <text x="80" y="302" textAnchor="middle" className="corner-h">CSAT</text>
+    <text x="80" y="320" textAnchor="middle" className="corner-sub">Did satisfaction hold?</text>
+    {/* Bottom-right: Recontact */}
+    <circle cx="640" cy="280" r="6" fill="#0A0A0A" />
+    <text x="640" y="302" textAnchor="middle" className="corner-h">Recontact</text>
+    <text x="640" y="320" textAnchor="middle" className="corner-sub">Did they come back?</text>
+    {/* Top label sub */}
+    <text x="360" y="-2" textAnchor="middle" className="corner-sub">Did the AI handle it?</text>
+  </svg>
+</Diagram>
+
+
 So when you see 90% containment on a sales slide, the correct response is a question. Contained, or resolved? And what happened to satisfaction and recontact while you got there?
 
 ## What good performance actually looks like

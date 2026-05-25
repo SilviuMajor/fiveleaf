@@ -52,6 +52,65 @@ Every one of these is a conversation that wanted to happen and could not. Multip
 
 The shift is not about sending more messages or better-written ones. It is about making the message the start of an exchange instead of the end of one.
 
+<Diagram
+  label="Two diagrams side by side. On the left, a notification: a one-way arrow from business to customer that ends in a dead end. On the right, a conversation: the same outbound arrow, but the customer can reply, and the business can respond, in a back-and-forth thread."
+  caption="A notification ends. A conversation continues. Same outbound message, completely different outcome."
+  tone="sand"
+>
+  <svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+    <style>{`
+      .h { font: 600 14px Inter, system-ui, sans-serif; fill: #0A0A0A; letter-spacing: 0.02em; }
+      .lbl { font: 500 12px Inter, system-ui, sans-serif; fill: #5C6068; }
+      .bubble-out { font: 500 11px Inter, system-ui, sans-serif; fill: #FFFFFF; }
+      .bubble-in { font: 500 11px Inter, system-ui, sans-serif; fill: #0A0A0A; }
+      .deadend { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #B45656; letter-spacing: 0.2em; }
+    `}</style>
+    {/* LEFT: Notification */}
+    <text x="160" y="34" textAnchor="middle" className="h">NOTIFICATION</text>
+    <text x="40" y="76" className="lbl">Business</text>
+    <text x="280" y="76" className="lbl" textAnchor="end">Customer</text>
+    {/* Outbound message */}
+    <rect x="40" y="92" width="160" height="36" rx="10" fill="#0A0A0A" />
+    <text x="56" y="115" className="bubble-out">Renewal reminder…</text>
+    <line x1="200" y1="110" x2="248" y2="110" stroke="#0A0A0A" strokeWidth="1.5" />
+    <polygon points="248,104 260,110 248,116" fill="#0A0A0A" />
+    {/* Customer with no reply path */}
+    <circle cx="276" cy="110" r="14" fill="none" stroke="#5C6068" strokeWidth="1.5" />
+    <text x="276" y="114" textAnchor="middle" className="lbl">?</text>
+    {/* Dead end */}
+    <rect x="60" y="160" width="200" height="60" rx="12" fill="none" stroke="#B45656" strokeWidth="1.5" strokeDasharray="3 4" />
+    <text x="160" y="184" textAnchor="middle" className="deadend">DEAD END</text>
+    <text x="160" y="206" textAnchor="middle" className="lbl">Reply needs a queue, a form, or a call</text>
+
+    {/* Divider */}
+    <line x1="360" y1="40" x2="360" y2="280" stroke="#E5E5E0" strokeWidth="1" />
+
+    {/* RIGHT: Conversation */}
+    <text x="540" y="34" textAnchor="middle" className="h">CONVERSATION</text>
+    <text x="420" y="76" className="lbl">Business</text>
+    <text x="660" y="76" className="lbl" textAnchor="end">Customer</text>
+    {/* Outbound message */}
+    <rect x="420" y="92" width="160" height="36" rx="10" fill="#0A0A0A" />
+    <text x="436" y="115" className="bubble-out">Renewal reminder…</text>
+    <line x1="580" y1="110" x2="628" y2="110" stroke="#0A0A0A" strokeWidth="1.5" />
+    <polygon points="628,104 640,110 628,116" fill="#0A0A0A" />
+    {/* Customer reply */}
+    <rect x="500" y="140" width="160" height="36" rx="10" fill="#FFFFFF" stroke="#E5E5E0" />
+    <text x="516" y="163" className="bubble-in">What are my options?</text>
+    <line x1="500" y1="158" x2="452" y2="158" stroke="#0A0A0A" strokeWidth="1.5" />
+    <polygon points="452,152 440,158 452,164" fill="#0A0A0A" />
+    {/* Resolution */}
+    <rect x="420" y="188" width="240" height="36" rx="10" fill="#0A0A0A" />
+    <text x="436" y="211" className="bubble-out">Stay flat or upgrade — same price</text>
+    <line x1="660" y1="206" x2="640" y2="206" stroke="#0A0A0A" strokeWidth="0" />
+    <line x1="580" y1="226" x2="628" y2="226" stroke="#0A0A0A" strokeWidth="0" />
+    {/* Outcome */}
+    <rect x="440" y="236" width="200" height="36" rx="10" fill="#D9E4D5" />
+    <text x="540" y="259" textAnchor="middle" className="bubble-in">Renewed in the thread</text>
+  </svg>
+</Diagram>
+
+
 A conversational layer sits on top of the outreach you already send. The customer can reply, in natural language, on the channel the message arrived on, and get a real answer, a real action, or a real outcome. Not a queue. Not a form. Not "please call us between nine and five." A response, there and then.
 
 The renewal reminder becomes a thread where the customer replies "what are my options," gets them, and renews. The payment notice becomes a thread where the customer replies "I need to spread this," and a plan gets arranged. The win-back email becomes the thread where the customer replies "what's the deal now," and the conversation that closes them actually takes place.

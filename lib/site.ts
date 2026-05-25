@@ -31,12 +31,17 @@ export const SITE = {
 // Anchor links use the absolute `/#section` form so they resolve
 // correctly from any page (e.g. /blog/article-slug → /#wedge), not
 // just from the homepage.
+//
+// Trimmed from 8 links to 6 to give the nav room to breathe. Handover
+// and Integrations were the two with the weakest claim to top-billing
+// — both sections still exist on the homepage and remain reachable
+// via the body content and Departments / How-it-works flows. The
+// remaining six are the buying-flow milestones: why, what, who,
+// how, what we write, and FAQ.
 export const NAV_LINKS = [
   { href: "/#wedge", label: "Why us" },
   { href: "/#agents-explainer", label: "AI agents" },
-  { href: "/#handover", label: "Handover" },
   { href: "/#departments", label: "Departments" },
-  { href: "/#partners", label: "Integrations" },
   { href: "/#how", label: "How it works" },
   { href: "/blog", label: "Blog" },
   { href: "/#faq", label: "FAQ" },

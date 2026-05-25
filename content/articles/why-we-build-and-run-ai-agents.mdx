@@ -54,6 +54,56 @@ At the other end are the big consultancies. They will absolutely build you somet
 
 Fiveleaf is the middle that was missing. A fully built, branded, hosted AI agent that runs inside your business, for roughly the cost of a single customer service hire. No internal AI team to build. No platform to learn. No vendor to manage. We do all of it.
 
+<Diagram
+  label="A horizontal spectrum with DIY platforms on the left, big consultancies on the right, and Fiveleaf in the middle. Each option is positioned by complexity and cost, with Fiveleaf highlighted as the gap between toolkit and transformation programme."
+  caption="The market had a toolkit at one end and a transformation programme at the other. We built for the gap in between."
+  tone="sage"
+>
+  <svg viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+    <style>{`
+      .h { font: 700 14px Inter, system-ui, sans-serif; fill: #0A0A0A; letter-spacing: 0.02em; }
+      .sub { font: 400 12px Inter, system-ui, sans-serif; fill: #5C6068; }
+      .tag { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #5C6068; letter-spacing: 0.2em; }
+      .you-do { font: 500 11px Inter, system-ui, sans-serif; fill: #B45656; }
+      .we-do { font: 500 11px Inter, system-ui, sans-serif; fill: #FFFFFF; }
+    `}</style>
+    {/* Background spectrum line */}
+    <line x1="60" y1="50" x2="660" y2="50" stroke="#E5E5E0" strokeWidth="1.5" />
+
+    {/* DIY platform */}
+    <g>
+      <rect x="40" y="70" width="180" height="140" rx="14" fill="#FFFFFF" stroke="#E5E5E0" />
+      <text x="130" y="100" textAnchor="middle" className="tag">DIY PLATFORM</text>
+      <text x="130" y="124" textAnchor="middle" className="h">A toolkit</text>
+      <text x="130" y="156" textAnchor="middle" className="sub">You build it.</text>
+      <text x="130" y="174" textAnchor="middle" className="sub">You run it.</text>
+      <text x="130" y="196" textAnchor="middle" className="you-do">Internal AI team required</text>
+    </g>
+
+    {/* Fiveleaf — highlighted */}
+    <g>
+      <rect x="240" y="62" width="240" height="158" rx="16" fill="#0A0A0A" />
+      <text x="360" y="92" textAnchor="middle" className="tag" style={{ fill: "#FFFFFF", opacity: 0.6 }}>FIVELEAF</text>
+      <text x="360" y="118" textAnchor="middle" className="h" style={{ fill: "#FFFFFF" }}>A fully built, branded</text>
+      <text x="360" y="138" textAnchor="middle" className="h" style={{ fill: "#FFFFFF" }}>agent that we run</text>
+      <text x="360" y="170" textAnchor="middle" className="we-do">Built for you.</text>
+      <text x="360" y="188" textAnchor="middle" className="we-do">Operated for you.</text>
+      <text x="360" y="208" textAnchor="middle" className="sub" style={{ fill: "#FFFFFF", opacity: 0.65 }}>~Cost of one CS hire</text>
+    </g>
+
+    {/* Big consultancy */}
+    <g>
+      <rect x="500" y="70" width="180" height="140" rx="14" fill="#FFFFFF" stroke="#E5E5E0" />
+      <text x="590" y="100" textAnchor="middle" className="tag">BIG CONSULTANCY</text>
+      <text x="590" y="124" textAnchor="middle" className="h">A programme</text>
+      <text x="590" y="156" textAnchor="middle" className="sub">They build it.</text>
+      <text x="590" y="174" textAnchor="middle" className="sub">You run it after.</text>
+      <text x="590" y="196" textAnchor="middle" className="you-do">Six-figure fee, 12mo+</text>
+    </g>
+  </svg>
+</Diagram>
+
+
 That is not a feature list. It is a deliberate position. We took on the hard, unscalable, deeply involved part, the part everyone else pushed onto the buyer, because that is the part that actually determines whether the thing works.
 
 ## Why "run" matters as much as "build"

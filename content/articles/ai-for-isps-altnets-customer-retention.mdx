@@ -38,6 +38,51 @@ An altnet has an economic structure that punishes operational gaps more harshly 
 
 That structure puts enormous weight on three things: getting customers installed and happy quickly, keeping them through their renewal, and answering them whenever they reach out. Each of these is where a thin, overstretched customer team starts to leak, and each leak maps to a different lost-customer mechanism.
 
+<Diagram
+  label="Three rectangular blocks side by side representing the three places ISPs and altnets lose customers: the install-query backlog, renewal calendar churn, and the out-of-hours void."
+  caption="The three places UK altnets quietly lose customers. None of them are about the fibre being bad. All of them are about the operation underneath."
+  tone="rose"
+>
+  <svg viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+    <style>{`
+      .h { font: 700 14px Inter, system-ui, sans-serif; fill: #0A0A0A; letter-spacing: 0.02em; }
+      .sub { font: 400 12px Inter, system-ui, sans-serif; fill: #5C6068; }
+      .tag { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #5C6068; letter-spacing: 0.2em; }
+    `}</style>
+    {/* Block 1 */}
+    <g>
+      <rect x="32" y="44" width="208" height="152" rx="16" fill="#FFFFFF" stroke="#E5E5E0" />
+      <text x="48" y="74" className="tag">LEAK 01</text>
+      <text x="48" y="104" className="h">Install-query backlog</text>
+      <text x="48" y="132" className="sub">Spiky support volume hits</text>
+      <text x="48" y="150" className="sub">brand-new customers during</text>
+      <text x="48" y="168" className="sub">the most fragile period of</text>
+      <text x="48" y="186" className="sub">the relationship.</text>
+    </g>
+    {/* Block 2 */}
+    <g>
+      <rect x="256" y="44" width="208" height="152" rx="16" fill="#FFFFFF" stroke="#E5E5E0" />
+      <text x="272" y="74" className="tag">LEAK 02</text>
+      <text x="272" y="104" className="h">Renewal on a calendar</text>
+      <text x="272" y="132" className="sub">Retention runs on whoever</text>
+      <text x="272" y="150" className="sub">is free that week. Saveable</text>
+      <text x="272" y="168" className="sub">customers leave before the</text>
+      <text x="272" y="186" className="sub">save conversation happens.</text>
+    </g>
+    {/* Block 3 */}
+    <g>
+      <rect x="480" y="44" width="208" height="152" rx="16" fill="#FFFFFF" stroke="#E5E5E0" />
+      <text x="496" y="74" className="tag">LEAK 03</text>
+      <text x="496" y="104" className="h">Out-of-hours void</text>
+      <text x="496" y="132" className="sub">Evening demand and weekend</text>
+      <text x="496" y="150" className="sub">switchers hit a closed door.</text>
+      <text x="496" y="168" className="sub">Someone else answers</text>
+      <text x="496" y="186" className="sub">while you sleep.</text>
+    </g>
+  </svg>
+</Diagram>
+
+
 ## Leak one: the install-query backlog
 
 The period between sign-up and a working, settled connection is where altnets generate their heaviest query volume and their most fragile customers. People who have just committed are anxious. They want to know when the engineer is coming, why the date moved, whether their router has shipped, how to self-install, why their speed is not what they expected on day one.

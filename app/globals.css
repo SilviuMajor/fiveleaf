@@ -207,12 +207,19 @@
 
 .fl-hero-gradient {
   position: absolute;
-  inset: -20%;
+  /* Inset reduced from -20% to -10% — visible bleed past the section
+     edge is unchanged once the blur softens the stops, but the
+     rasterised surface is a quarter of the size. Material GPU memory
+     saving on retina/HiDPI screens. */
+  inset: -10%;
   background:
     radial-gradient(45% 40% at 25% 35%, rgba(220, 230, 242, 0.18), transparent 70%),
     radial-gradient(50% 45% at 75% 60%, rgba(248, 226, 208, 0.12), transparent 75%),
     radial-gradient(35% 30% at 50% 80%, rgba(229, 222, 239, 0.14), transparent 70%);
-  filter: blur(60px);
+  /* Blur trimmed from 60px to 40px. Visually almost identical because
+     the gradient stops are already soft; the GPU cost of rasterising
+     the blur is meaningfully lower on lower-end devices. */
+  filter: blur(40px);
   animation: fl-gradient-drift 22s ease-in-out infinite;
   will-change: transform, opacity;
   pointer-events: none;

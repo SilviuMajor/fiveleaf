@@ -54,6 +54,42 @@ The next number tells you it has not. Nearly two-thirds of companies are still s
 
 This is the defining feature of conversational AI in 2026, and it deserves to be stated plainly. Having AI somewhere in your organisation is no longer a differentiator. Almost everyone does. The differentiator is whether you have moved any of it from pilot to production at scale, and almost nobody has. As McKinsey's researchers put it, organisations are very good at doing AI projects but far fewer know how to turn those projects into a new operating baseline.
 
+<Diagram
+  label="Three horizontal bars showing the gap between AI adoption (88% of organisations using AI), AI agent scaling (under 10% scaling agents in any single function), and measurable EBIT impact (39% reporting any impact). The drop-off illustrates the scaling gap."
+  caption="The 2026 paradox in one chart. Adoption is universal; scaling is rare; measurable impact is rarer still. The gap is not technology. It is operating discipline. Source: McKinsey State of AI 2025."
+  tone="sky"
+>
+  <svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+    <style>{`
+      .lbl { font: 600 14px Inter, system-ui, sans-serif; fill: #0A0A0A; }
+      .sub { font: 400 12px Inter, system-ui, sans-serif; fill: #5C6068; }
+      .num { font: 700 22px 'JetBrains Mono', ui-monospace, monospace; fill: #0A0A0A; }
+      .axis { font: 500 10px 'JetBrains Mono', ui-monospace, monospace; fill: #9CA0A6; letter-spacing: 0.18em; }
+    `}</style>
+    {/* Row 1 — 88% */}
+    <text x="40" y="56" className="lbl">Organisations using AI</text>
+    <text x="40" y="74" className="sub">in at least one function</text>
+    <rect x="40" y="86" width="616" height="20" rx="6" fill="#FFFFFF" stroke="#E5E5E0" />
+    <rect x="40" y="86" width="542" height="20" rx="6" fill="#0A0A0A" />
+    <text x="600" y="102" className="num">88%</text>
+
+    {/* Row 2 — under 10% */}
+    <text x="40" y="148" className="lbl">Scaling autonomous AI agents</text>
+    <text x="40" y="166" className="sub">in any single function</text>
+    <rect x="40" y="178" width="616" height="20" rx="6" fill="#FFFFFF" stroke="#E5E5E0" />
+    <rect x="40" y="178" width="62" height="20" rx="6" fill="#0A0A0A" />
+    <text x="120" y="194" className="num" style={{ fontSize: "18px" }}>&lt;10%</text>
+
+    {/* Row 3 — 39% with measurable EBIT */}
+    <text x="40" y="232" className="lbl">Reporting measurable</text>
+    <text x="40" y="250" className="sub">EBIT impact from AI</text>
+    <rect x="40" y="262" width="616" height="20" rx="6" fill="#FFFFFF" stroke="#E5E5E0" />
+    <rect x="40" y="262" width="240" height="20" rx="6" fill="#0A0A0A" />
+    <text x="296" y="278" className="num" style={{ fontSize: "18px" }}>39%</text>
+  </svg>
+</Diagram>
+
+
 The gap shows up on the balance sheet too. Only 39% of respondents say AI has had any measurable impact on enterprise-wide EBIT, and for most of them that impact is under 5%. Benefits are real but concentrated at the use-case level. Software engineering and IT report 10 to 20% cost reductions, while marketing and product development show revenue uplift above 10%, rather than transforming the whole business.
 
 ## Why the scaling gap exists

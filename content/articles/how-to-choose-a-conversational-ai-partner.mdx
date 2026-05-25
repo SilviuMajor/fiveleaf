@@ -42,6 +42,58 @@ The third is a service: an agent that is designed, built, hosted, and continuous
 
 A lot of operators think they want a project and actually want a service. The reason is the part nobody enjoys discovering. A conversational AI agent is not a thing you ship once. It is a thing you operate. Its knowledge goes stale, its integrations break against system updates, its edge cases need tuning. A project that is handed over and forgotten becomes the half-dead bot every business has a story about. Know which of the three you are buying before you start comparing, or you will compare the wrong things.
 
+<Diagram
+  label="Three columns showing the trade-offs between buying a conversational AI tool, a one-off project, or a fully managed service. The service option keeps both ownership of outcome and ongoing operation with the partner."
+  caption="Three different purchases under the same vendor pitch. Decide which one you actually need before you compare partners — most operators discover late that what they wanted was the service."
+  tone="sand"
+>
+  <svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+    <style>{`
+      .col-h { font: 700 14px Inter, system-ui, sans-serif; fill: #0A0A0A; letter-spacing: 0.02em; }
+      .col-sub { font: 400 12px Inter, system-ui, sans-serif; fill: #5C6068; }
+      .row-lbl { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; fill: #5C6068; letter-spacing: 0.18em; }
+      .you { font: 600 13px Inter, system-ui, sans-serif; fill: #0A0A0A; }
+      .them { font: 600 13px Inter, system-ui, sans-serif; fill: #5C6068; }
+    `}</style>
+    {/* Headers */}
+    <text x="180" y="36" textAnchor="middle" className="col-h">Tool</text>
+    <text x="180" y="54" textAnchor="middle" className="col-sub">A platform you operate</text>
+    <text x="360" y="36" textAnchor="middle" className="col-h">Project</text>
+    <text x="360" y="54" textAnchor="middle" className="col-sub">A one-off build, then yours</text>
+    <text x="540" y="36" textAnchor="middle" className="col-h">Service</text>
+    <text x="540" y="54" textAnchor="middle" className="col-sub">Built, hosted, and run for you</text>
+
+    {/* Row labels */}
+    <text x="20" y="120" className="row-lbl">BUILDS IT</text>
+    <text x="20" y="200" className="row-lbl">OPERATES IT</text>
+    <text x="20" y="280" className="row-lbl">OWNS OUTCOME</text>
+
+    {/* Column 1: Tool */}
+    <rect x="110" y="92" width="140" height="44" rx="10" fill="#FFFFFF" stroke="#E5E5E0" />
+    <text x="180" y="120" textAnchor="middle" className="you">You</text>
+    <rect x="110" y="172" width="140" height="44" rx="10" fill="#FFFFFF" stroke="#E5E5E0" />
+    <text x="180" y="200" textAnchor="middle" className="you">You</text>
+    <rect x="110" y="252" width="140" height="44" rx="10" fill="#FFFFFF" stroke="#E5E5E0" />
+    <text x="180" y="280" textAnchor="middle" className="you">You</text>
+
+    {/* Column 2: Project */}
+    <rect x="290" y="92" width="140" height="44" rx="10" fill="#FFFFFF" stroke="#E5E5E0" />
+    <text x="360" y="120" textAnchor="middle" className="them">Partner</text>
+    <rect x="290" y="172" width="140" height="44" rx="10" fill="#FFFFFF" stroke="#E5E5E0" />
+    <text x="360" y="200" textAnchor="middle" className="you">You</text>
+    <rect x="290" y="252" width="140" height="44" rx="10" fill="#FFFFFF" stroke="#E5E5E0" />
+    <text x="360" y="280" textAnchor="middle" className="you">You</text>
+
+    {/* Column 3: Service — emphasised */}
+    <rect x="470" y="92" width="140" height="44" rx="10" fill="#0A0A0A" />
+    <text x="540" y="120" textAnchor="middle" className="col-h" style={{ fill: "#FFFFFF" }}>Partner</text>
+    <rect x="470" y="172" width="140" height="44" rx="10" fill="#0A0A0A" />
+    <text x="540" y="200" textAnchor="middle" className="col-h" style={{ fill: "#FFFFFF" }}>Partner</text>
+    <rect x="470" y="252" width="140" height="44" rx="10" fill="#0A0A0A" />
+    <text x="540" y="280" textAnchor="middle" className="col-h" style={{ fill: "#FFFFFF" }}>You</text>
+  </svg>
+</Diagram>
+
 ## The twelve questions
 
 ### On capability and proof
