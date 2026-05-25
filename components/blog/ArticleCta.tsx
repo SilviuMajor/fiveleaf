@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { SITE } from "@/lib/site";
 
 /**
  * ArticleCta — the soft conversion block at the foot of every article.
@@ -27,15 +26,16 @@ export function ArticleCta() {
         waiting six months. No pitch.
       </p>
       <div className="mt-6 flex flex-wrap items-center gap-4">
-        <a
-          href={SITE.bookingUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        {/* Point at the homepage #book anchor (not the external cal.com URL
+            directly) so a future calendar-provider swap is a one-line change
+            in BookingEmbed instead of an edit across every article + CTA. */}
+        <Link
+          href="/#book"
           className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-fl-ink transition hover:bg-white/90"
         >
           Book a 30-min call
           <ArrowUpRight className="h-4 w-4" />
-        </a>
+        </Link>
         <Link
           href="/blog"
           className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white"

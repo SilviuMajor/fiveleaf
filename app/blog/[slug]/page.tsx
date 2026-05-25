@@ -91,6 +91,8 @@ export default async function ArticlePage({
       updatedAt: frontmatter.updatedAt ?? frontmatter.publishedAt,
       author: frontmatter.author!,
       tags: frontmatter.tags,
+      targetKeyword: frontmatter.targetKeyword,
+      authorCredential: frontmatter.authorCredential,
     }),
     personJsonLd(frontmatter.author!),
     ...(frontmatter.faq && frontmatter.faq.length > 0
@@ -107,7 +109,9 @@ export default async function ArticlePage({
           readingMinutes={readingMinutes}
         />
 
-        <KeyTakeaways items={frontmatter.keyTakeaways} />
+        {frontmatter.keyTakeaways && frontmatter.keyTakeaways.length > 0 && (
+          <KeyTakeaways items={frontmatter.keyTakeaways} />
+        )}
 
         {/* Body + sticky TOC on the right */}
         <div className="mx-auto mt-12 grid max-w-6xl gap-12 px-6 md:px-10 lg:grid-cols-[1fr_220px] lg:gap-16">

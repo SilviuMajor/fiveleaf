@@ -41,7 +41,7 @@ export function ArticleHeader({
         </p>
         <span className="text-fl-muted">·</span>
         <Pill tone="neutral" uppercase>
-          For {frontmatter.audience.toLowerCase()}
+          For {(frontmatter.audience ?? "Everyone").toLowerCase()}
         </Pill>
       </div>
 

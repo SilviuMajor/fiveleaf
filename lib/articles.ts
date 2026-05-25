@@ -36,31 +36,28 @@ export type ArticleFrontmatter = {
   updatedAt?: string;
   /** Free-text tags used for filtering on the index. */
   tags: string[];
-  /** Funnel category — used for the index lane chips. */
-  category:
-    | "Foundations"
-    | "Build vs buy"
-    | "Sales"
-    | "Operations"
-    | "Founder log"
-    | "Playbook"
-    | "Comparisons"
-    | "Compliance";
-  /** Primary reader the piece is written for. */
-  audience:
-    | "Operators"
-    | "Sales leaders"
-    | "Founders"
-    | "Technical buyers"
-    | "Everyone";
+  /** Editorial category — drives the index lane chips. Kept as a
+   *  free-form string so new categories can be added by writing them
+   *  in frontmatter without a code change. */
+  category: string;
+  /** Primary reader the piece is written for. Optional — defaults to
+   *  "Everyone" when omitted. */
+  audience?: string;
   /** Author. Defaults to the Fiveleaf founder if omitted. */
   author?: ArticleAuthor;
   /** Set to 'draft' to hide from production. */
   status?: "draft" | "published";
-  /** Short 3-5 bullet list the LLMs and Google AI Overviews quote. */
-  keyTakeaways: string[];
+  /** Short 3-5 bullet list the LLMs and Google AI Overviews quote.
+   *  Optional — if omitted the in-article box is skipped entirely. */
+  keyTakeaways?: string[];
   /** Per-article FAQ entries powering the FAQ section + JSON-LD. */
   faq?: { q: string; a: string }[];
+  /** SEO target keyword — used as `keywords` in the Article JSON-LD.
+   *  Falls back to a comma-join of `tags` when omitted. */
+  targetKeyword?: string;
+  /** One-line credential describing the author. Used in the JSON-LD
+   *  `author.description` field — significant E-E-A-T weight. */
+  authorCredential?: string;
 };
 
 export type Article = {
@@ -94,6 +91,8 @@ function readArticleFile(filename: string): Article | null {
   if (!fm.slug) fm.slug = slugFromFile;
   if (!fm.author) fm.author = DEFAULT_AUTHOR;
   if (!fm.status) fm.status = "published";
+  if (!fm.audience) fm.audience = "Everyone";
+  if (!fm.keyTakeaways) fm.keyTakeaways = [];
 
   const stats = readingTime(parsed.content);
 

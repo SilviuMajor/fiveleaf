@@ -71,6 +71,8 @@ export function articleJsonLd({
   updatedAt,
   author,
   tags,
+  targetKeyword,
+  authorCredential,
 }: {
   url: string;
   title: string;
@@ -79,6 +81,12 @@ export function articleJsonLd({
   updatedAt: string;
   author: ArticleAuthor;
   tags: string[];
+  /** SEO target keyword for the `keywords` field. Falls back to a
+   *  comma-join of `tags` when omitted. */
+  targetKeyword?: string;
+  /** Author credential string — used in the `author.description`
+   *  field, which materially boosts E-E-A-T signal. */
+  authorCredential?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -90,10 +98,11 @@ export function articleJsonLd({
     datePublished: publishedAt,
     dateModified: updatedAt,
     inLanguage: "en-GB",
-    keywords: tags.join(", "),
+    keywords: targetKeyword ?? tags.join(", "),
     author: {
       "@type": "Person",
       name: author.name,
+      ...(authorCredential ? { description: authorCredential } : {}),
       ...(author.url ? { url: author.url } : {}),
       jobTitle: author.role,
       worksFor: { "@type": "Organization", name: SITE.name, url: SITE.url },

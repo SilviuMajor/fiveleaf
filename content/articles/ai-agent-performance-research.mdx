@@ -1,0 +1,97 @@
+---
+slug: ai-agent-performance-research
+title: "What the Research Actually Says About AI Agent Performance"
+description: "Resolution rates, containment, CSAT, hallucination and ROI for conversational AI: what the independent data shows, where the evidence is strong, and where the numbers mislead. A rigorous, sourced analysis."
+publishedAt: "2026-05-25"
+updatedAt: "2026-05-25"
+category: "Research"
+audience: "Operators"
+targetKeyword: "AI agent performance research"
+authorCredential: "Silviu Major is the founder of Fiveleaf, where he designs, builds and runs conversational AI agents in production for ISPs, telecoms and other high-volume customer operations."
+tags:
+  - chatbot resolution rate
+  - containment rate benchmark
+  - AI customer service CSAT
+  - conversational AI ROI data
+faq:
+  - q: "What is a good containment rate for a chatbot?"
+    a: "Most chatbots contain 20 to 40% of conversations, while mature, well-integrated implementations reach 70 to 90%. But containment alone is misleading because it only measures that the customer did not escalate, not that their problem was solved. It should always be read alongside CSAT and recontact rate."
+  - q: "Is containment rate the same as resolution rate?"
+    a: "No, and conflating them is the most common error in the field. Containment measures that a conversation was not escalated to a human. Resolution measures that the customer's problem was actually solved. A high containment rate can hide a low resolution rate if customers are giving up rather than being helped."
+  - q: "How accurate are AI customer service agents?"
+    a: "Accuracy is highly task-dependent. Well-defined factual tasks like password resets reach around 98% accuracy, while ambiguous emotional scenarios drop to around 61%. Critically, hallucination depends on grounding: ungrounded chatbots hallucinate 15 to 27% of the time, while systems grounded in a verified knowledge base drop to under 1.5%."
+  - q: "What actually determines whether a conversational AI agent performs well?"
+    a: "Independent 2026 benchmarks find that performance variance is almost entirely a function of integration depth, not model choice. Agents wired into ticketing, knowledge base and identity systems contain and resolve far more than standalone deployments. Integration coverage is the strongest predictor of performance."
+  - q: "How should I evaluate AI chatbot ROI claims?"
+    a: "Apply three corrections that vendor figures usually skip: use gross profit rather than revenue for any sales uplift, avoid double-counting the same contacts across different savings categories, and subtract the full ongoing cost of ownership including platform, maintenance, model usage and integration. The credible ROI is almost always smaller than the marketing figure, though often still strong."
+---
+
+There is no shortage of impressive statistics about conversational AI. Vendors publish them constantly: 90% containment, 95% accuracy, eightfold return on investment. The problem is that most of these numbers are either measuring the wrong thing, measuring it in a way designed to flatter, or quietly redefining the words to make a weak result look strong.
+
+This piece is an attempt to do the opposite. We have gathered the independent performance data on conversational AI, covering resolution rates, containment, satisfaction, accuracy and cost, and tried to read it honestly, including where it is unflattering. The single most important lesson in the whole field is buried in the definitions, so we start there, because if you do not understand the metrics you will be sold a number that means nothing.
+
+## The metric that hides everything: containment is not resolution
+
+The most-quoted performance number for a conversational agent is its containment rate, the percentage of conversations the AI handled without passing to a human. It is also the most misleading single number in the category, and understanding why is the key that unlocks everything else.
+
+Containment only measures that the customer did not escalate. It does not measure whether their problem was solved. A customer can complete an entire automated workflow without resolving the underlying issue, give up in frustration, or simply not realise a human option existed. All of those count as contained. A high containment rate can mean the AI is resolving problems brilliantly, or it can mean the AI is a wall that customers cannot get past. The number alone cannot tell you which.
+
+This is why serious practitioners insist that containment be read alongside two other metrics, never on its own. The first is CSAT, customer satisfaction. If containment rises while satisfaction falls, the AI is deflecting customers, not helping them. The second is recontact rate, the customers who return with the same issue within 24 to 72 hours. A high recontact rate is the clearest proof that a contained conversation was not actually resolved, whatever the containment number says.
+
+Read together, these three form what one analysis calls the automation quality triangle: containment, CSAT and recontact as an inseparable set. Rising resolution with stable satisfaction confirms genuinely effective automation. Rising resolution with falling satisfaction signals containment masquerading as resolution. Any vendor who shows you a containment number without the other two is showing you half a picture, and usually the flattering half.
+
+So when you see 90% containment on a sales slide, the correct response is a question. Contained, or resolved? And what happened to satisfaction and recontact while you got there?
+
+## What good performance actually looks like
+
+With the definitions straight, the benchmark data becomes readable, and a consistent picture emerges across independent sources.
+
+On containment, the realistic spread is wide. Most chatbots contain just 20 to 40% of conversations, while mature, well-built implementations reach 70 to 90%. One set of 2026 benchmarks puts most chatbots at 20 to 40% end-to-end resolution, with category leaders at 80 to 90%. The gap between those two groups is the whole story of the category, and we will come to what causes it shortly, because it is the most important finding here.
+
+On satisfaction, the picture is more encouraging than the sceptics expect. Industry-average CSAT for AI support agents now sits around 78%, with leaders above 85%, roughly equivalent to live-chat performance. One large analysis found pure-AI handling lands at 4.1 out of 5 CSAT against 4.3 for human agents, and that hybrid escalation flows, meaning AI plus a clean handover, narrow the gap to as little as 0.05 points. The CSAT gap between AI and human support, in well-built systems, has effectively closed. Customer resistance is also weaker than assumed, with positive-experience rates for AI chatbot interactions commonly reported around 80%.
+
+On deflection at the tier-one level, median performance clusters lower than vendor marketing implies. One 2026 synthesis put median tier-one deflection at around 41%, with the top quartile near 59%. The same data shows why aggregate numbers mislead: simple intents like refunds and password resets deflect at over 70%, while nuanced complaints rarely break 25%. The headline deflection rate is almost meaningless without knowing the mix of queries underneath it.
+
+## The accuracy question, and the word "hallucination"
+
+The objection that stops most conversational-AI deployments is accuracy. What if it makes something up? The data here is genuinely reassuring, but only under a specific condition, and that condition is the entire point.
+
+Accuracy is heavily task-dependent. One benchmark set found password resets hitting 98.2% accuracy while emotional-intelligence scenarios dropped to 61.2%. This is exactly what you would expect. Well-defined, factual tasks are handled near-perfectly, while ambiguous, emotional ones are not. The practical lesson is to match the deployment to the task, letting the agent own the well-defined high-volume work and routing the rest to humans.
+
+On hallucination specifically, the finding is the most operationally important in the whole dataset. Ungrounded chatbots, meaning those answering from the model's general knowledge, hallucinate something in the range of 15 to 27% of the time. Grounded systems, meaning those that retrieve answers from a verified knowledge base before responding, drop to 0.7 to 1.5%. That is not a marginal improvement. It is the difference between a system you can trust in front of customers and one you cannot.
+
+The word grounded is doing enormous work there. A conversational agent connected to your actual knowledge base, retrieving real answers, has a fundamentally different risk profile from one improvising from a general model. If you take one technical requirement from this entire piece, it is that the agent must be grounded in your verified knowledge. Ungrounded is a liability. Grounded is a tool.
+
+## The finding that explains the variance: integration depth
+
+We have now seen the same pattern three times, a huge gap between the worst and best performers on containment, on accuracy, on satisfaction. The obvious question is what separates them. The data gives an unusually clear answer, and it is not the one most buyers expect.
+
+It is not the model. It is integration depth.
+
+The 2026 benchmark analysis is explicit. The variance in containment is almost entirely a function of integration depth. Bots wired into ticketing, knowledge base and identity systems contain dramatically more conversations than standalone deployments. The recommendation that follows is to evaluate vendors on integration coverage as the primary predictor of performance, above model choice, above anything else.
+
+This is the most important practical finding in the research, and it runs directly against how most conversational AI is sold. The marketing is about the model and the conversational quality. The data says the determinant of whether the thing works is how deeply it is connected to the systems where your business runs: your CRM, your billing, your ticketing, your customer records. An agent that can look up a real account and take a real action resolves problems. An agent that can only talk deflects them. Same model, completely different outcome, and the difference is the integration nobody puts on the slide.
+
+It also explains the split in the benchmark data, the 20-to-40% crowd and the 80-to-90% crowd. They are not using different models. They are integrated to different depths. The leaders connected the agent into their systems. The laggards bolted a chatbot onto a website.
+
+## What about ROI?
+
+Return-on-investment claims are where conversational AI marketing is least disciplined, so this section is mostly about how to read them rather than which number to believe.
+
+The reported figures are large and varied. There is average annual savings around 300,000 US dollars and roughly 30% lower support costs in one widely-cited set, cost-per-resolution figures of 0.62 dollars for AI versus 7.40 for a human agent in a McKinsey-referenced sample, and returns commonly quoted between roughly 3.50 and 8 dollars per dollar invested. These are real directional signals. The unit economics of automating high-volume, repetitive contact are genuinely favourable. But the numbers are also where the most overclaiming happens, and a careful buyer applies a few corrections.
+
+Independent ROI modelling guidance, notably from analysts who have no incentive to inflate, flags the specific traps. Use gross profit, not revenue: an agent that drives 50,000 pounds in sales is not a 50,000-pound benefit if your margin is 30%. Do not double-count savings: if you count a contact as a containment saving, you cannot also count it in an average-handle-time reduction pool. And separate per-interaction savings from total cost of ownership, because the platform, maintenance, model usage and integration work are real ongoing costs that the headline savings figure conveniently omits.
+
+The honest version of the ROI story is this. The savings are real and often substantial, but the credible number is always smaller than the marketing number, because the marketing number applies the uplift to total volume and ignores the costs. Apply the benefit only to the work the AI actually did, use gross margin, subtract the running costs, and you get a figure you can defend to a CFO. That figure is usually still good, just not as good as the slide.
+
+## Reading any performance claim
+
+Pull the threads together and you have a checklist for any conversational-AI performance claim you encounter.
+
+Ask whether a containment or deflection number is paired with CSAT and recontact, because alone it is unreadable. Ask what mix of queries sits under an aggregate rate, because simple and complex intents perform completely differently. Ask whether the system is grounded in a verified knowledge base, because that single factor moves the hallucination rate by more than an order of magnitude. Ask how deeply it integrates with real systems, because that, not the model, is what the data says predicts performance. And on ROI, ask whether the number uses gross profit, avoids double-counting, and subtracts running costs.
+
+The research is genuinely encouraging for well-built, well-integrated, grounded conversational agents. Satisfaction matches human support, accuracy on defined tasks is excellent, and the economics work. It is equally clear that bolt-on, ungrounded, unintegrated deployments perform poorly and erode trust. The technology is not the variable. The build is.
+
+---
+
+*Fiveleaf builds AI agents that are grounded in your verified knowledge and integrated deep into your systems, because the research is unambiguous that this is what separates an agent that resolves from a bot that deflects. We do this for mid-market and enterprise operators. If you want performance you can prove to a CFO, [book a call](/#book).*
