@@ -1,0 +1,127 @@
+---
+slug: what-we-learned-running-an-ai-agent-for-18-months
+title: "What we learned running an AI customer service agent for 18 months"
+description: "Honest field notes from 18 months of operating an AI agent in production for a UK ISP. The early failures, the inflection point, the metrics that actually matter, and the things I'd do differently if I started again tomorrow."
+publishedAt: "2026-05-21"
+updatedAt: "2026-05-21"
+category: "Founder log"
+audience: "Founders"
+tags:
+  - founder log
+  - AI deployment
+  - customer service
+  - lessons learned
+  - production AI
+  - case study
+keyTakeaways:
+  - "The agent didn't start working properly until month four. The first three months were almost entirely integration and data work. Anyone who claims a faster path is selling demoware."
+  - "The single change that doubled our resolution rate was switching from 'reply with the best answer the model can produce' to 'reply with a confidence score attached, and escalate anything under 75%'. Calibrated humility beats confident accuracy."
+  - "We learned to optimise for the customer's whole journey, not the individual ticket. An agent that handles 90% of the conversation but mishandles the final 10% is worse than one that hands off cleanly at 70%."
+  - "The hardest lesson: we built an agent that was technically excellent and editorially wrong. It sounded like ChatGPT, not like the company. That cost us six weeks of tone-of-voice rework. Spend that time up front."
+  - "After 18 months: roughly 47% of inbound resolved fully by the agent, sub-three-second response times on the resolved ones, single-digit complaint rate on agent-handled tickets. A measurable five-figure monthly saving and, more importantly, a customer-service team that's properly resourced for the work AI shouldn't be doing."
+faq:
+  - q: "Who's the ISP you keep referring to?"
+    a: "We refer to them anonymously throughout. They're a UK internet service provider we partner with as the AI agent build and operations team. Beyond that they've asked to stay out of marketing material, and we respect that. The numbers in this piece are real but generalised, and intentionally not enough to identify them."
+  - q: "Would you do the deployment again if you started today?"
+    a: "Yes, but differently. Three changes: I'd start with shadow mode for longer (six weeks, not two), I'd write the tone-of-voice guide before writing a single prompt, and I'd build the escalation rules before the resolution rules. The first version of our agent was too keen to resolve. The second version was too keen to escalate. The third version, the one we run now, knows the difference."
+  - q: "What's the biggest cost saving you've seen?"
+    a: "Direct headcount savings are real but smaller than the productivity gains. The bigger number is the conversion lift on out-of-hours sales enquiries — those used to die overnight, and the agent now warms them through to the morning. That's the line item with the loudest ROI. The customer service efficiency is the steady, compounding gain underneath it."
+  - q: "What's the most embarrassing failure?"
+    a: "Three months in, the agent confidently quoted a price that hadn't been valid for six weeks because it had been trained on a snapshot of the pricing page rather than reading the live source. The customer complained, we apologised and honoured the wrong price. We rebuilt the data layer the next week so the agent always reads live, never trained snapshots. That single architectural change has prevented an order of magnitude more of those moments."
+  - q: "Will you publish the agent's actual performance numbers?"
+    a: "Not the raw daily figures — that's the partner's data, not ours to share. The numbers in this piece are the ranges and trends. If you book a discovery call we can walk you through the framework we use to measure deployment performance, which is more useful for your situation than our exact percentages anyway."
+---
+
+Eighteen months ago we put a piece of software in front of paying customers and told them to treat it like a person. It was an AI agent — a system that reads inbound messages, pulls customer context, decides what to say, replies. Today that agent handles just under half of inbound customer service traffic for a UK ISP we partner with, with response times measured in seconds and a complaint rate I'd struggle to match with a human team.
+
+The path from there to here was not a straight line. I want to write down what we got wrong and what we got right while the lessons are still recent. Not a polished case study — those tend to read like advertorials. A field log, written by the person who built and runs the thing.
+
+If you're considering a similar deployment, or you're partway through one and trying to work out whether you're on track, this is for you.
+
+## The agent didn't really work for the first three months
+
+The marketing copy says *production AI customer service agent, live since 2024*. The honest version is: we put something in front of customers in week four, called it a pilot, and spent the next twelve weeks rebuilding most of it.
+
+The first version was technically impressive in a way that didn't matter. It could write fluent, polite replies. It got the customer's name right (mostly). It mentioned the right plan when asked about plans. What it couldn't do — at all — was take any action that required real-time data. Bill amounts were stale. Network status was guessed. Plan availability for an address was answered with confidence and frequently wrongly.
+
+We had built the agent on a snapshot architecture: nightly exports from the partner's systems, ingested into the agent's knowledge base, queried at message time. It was the obvious way to start. It was also the wrong way to finish.
+
+> The model wasn't the problem. The data was always the problem.
+
+I'd write that on the wall of any office where someone is currently building an AI agent. The model is a commodity. The thing you're really building is a real-time data fabric that the model can reason over. We spent the next six weeks ripping out the snapshot architecture and replacing it with live queries straight into the partner's stack. After that change everything got measurably better, and a lot of the *AI-quality* problems we'd been chasing turned out to be data-freshness problems wearing a costume.
+
+## The inflection point: calibrated humility
+
+By month four the agent had real data, was answering questions accurately, and was still underperforming. The metric that wasn't moving was *resolution rate*: the percentage of conversations the agent handled end-to-end without a human stepping in.
+
+We were stuck in the high thirties for weeks. Customers were getting good answers; they were also being passed to a human more often than we wanted, usually for questions we *knew* the agent could handle. Reviewing the transcripts I noticed something: the agent was hedging. It would answer correctly and then add *"please confirm with a member of our team before proceeding"* on the end. The hedge was triggering the customer to ask for a human, which was then triggering an escalation, which was then counting against the resolution rate.
+
+The fix was counter-intuitive: we made the agent more aware of its own confidence, and stopped asking it to be confident on everything. We added a confidence score to every reply. Above 75% it answered directly, no hedge. Below 75% it stopped trying to answer and explicitly handed off, gracefully, with full context. The middle disappeared.
+
+The week after we deployed that change, resolution rate jumped from 37% to 61%. Not because the agent got cleverer, but because it stopped being passive-aggressively unsure. **Calibrated humility beat confident accuracy.** It's been the most durable architectural lesson of the whole project.
+
+## The thing I'm most embarrassed about
+
+Around month five we had what I now call *the price incident*. A customer asked about an upgrade. The agent quoted £35. The pricing page had moved to £39 six weeks earlier. The agent had been trained against the September snapshot of the pricing page, never updated to October.
+
+The customer screenshotted the £35 and demanded we honour it. We did. It was the right call. They were a long-tenured account and the mistake was ours. They told us about it on Twitter. That was less great.
+
+What was useful about that incident is it forced an architectural change I'd been resisting because it was hard: the agent should never read from a trained snapshot. Anything that could change — prices, availability, plan structures, current promotions — has to be pulled live, every time, with no caching. We rebuilt the data layer the following week. It made the agent slightly slower per response (about 0.3 seconds added) and entirely fixed a class of failures we hadn't been measuring properly until the failure was public.
+
+A pattern shows up again here: *the architectural change that prevents the next ten incidents looks more expensive than the cost of those ten incidents until the first one happens publicly*. After that, the maths flips and the change becomes obviously cheap. If you're building this from scratch, take this as fair warning and make those changes up front.
+
+## We built an excellent agent that sounded wrong
+
+Month six. The agent was working. The numbers were good. The CEO of the ISP partner called me and said the thing I'd been quietly worried about.
+
+*"It's fine. But it doesn't sound like us."*
+
+He was right. We had spent six months obsessing over accuracy, integration, response time, escalation logic. We had spent approximately zero hours on tone of voice. The agent was technically excellent and editorially wrong. It sounded like a competent enterprise chatbot — slightly American, slightly formal, slightly the same as everyone else's competent enterprise chatbot. The partner's brand voice was warmer, more British, slightly self-deprecating, used short sentences. The agent used none of that.
+
+Fixing this took six weeks I hadn't planned for. We wrote a proper tone-of-voice guide with the partner's marketing team. Got their three best CS agents to look at a hundred sample agent replies and mark each one as *sounds like us* or *doesn't*. Pattern-matched the no's into a list of don'ts. Rebuilt the agent's reply prompts around the guide. Re-tested everything.
+
+What I learned: **the tone-of-voice document should exist before you build the agent, not after**. Treat it like a contract. Treat it like part of the data layer. Customers tolerate AI when it sounds like the company; they reject AI when it sounds like AI.
+
+## Out-of-hours was the real prize
+
+The metric that justified the entire project to the board wasn't the customer service efficiency. It was the sales lift on out-of-hours enquiries.
+
+The ISP partner gets a non-trivial chunk of inbound enquiries between 5pm and 9am — coverage checks, plan questions, *can you actually deliver to my street*. Before the agent, those queries got triaged in the morning. By the time someone replied, the customer had often already moved on and signed up with someone else. The conversion rate on out-of-hours leads was significantly worse than on in-hours.
+
+The agent fixed that overnight, literally. After-hours leads now get an immediate, accurate, on-tone response. The conversion rate on those leads moved into the same band as the in-hours equivalent. That's a much larger line item than the customer service efficiency, and it's the part of the deployment that's hardest to retro-justify if you skip it.
+
+If you're scoping an AI customer service build, do not skip the sales channels. They're where the loud money is.
+
+## What I'd do differently if I started tomorrow
+
+Three concrete changes.
+
+**Shadow mode for six weeks, not two.** We went live with real customers too fast. The first three months were essentially us learning in public. Six weeks of shadow mode — the agent running in parallel, watching every conversation, generating what it *would* have said, the team reviewing — would have caught most of the early problems before any customer ever saw them. The trade-off is six weeks of "no production traffic" looks slow. It isn't. The slow version is the rebuild after a public incident.
+
+**Write the tone-of-voice guide before any prompt.** A four-page document. Three things the brand says, three things it doesn't say, ten sample interactions written by the best CS agent on the team. That document should exist before the model is touched. The agent gets built against it. Saves the six-week rework I described above.
+
+**Build the escalation rules before the resolution rules.** Counter-intuitively. Decide what the agent *won't* do before deciding what it will. Cancellations, refunds, hardship cases, anything regulated — write those rules first. Then the agent is built knowing the limits of its lane and can do the rest with confidence. We did it the other way around and had to retrofit the escalation logic later, which is harder than it sounds because by then the agent has muscle memory for handling things it shouldn't.
+
+## Where we are now
+
+Eighteen months in, the numbers are stable and steadily improving. Roughly 47% of inbound customer service is resolved end-to-end by the agent. Resolved-tickets average sub-three-second response times. Complaint rate on agent-handled tickets is in the low single digits and indistinguishable from the human team's. Out-of-hours conversion rate is approximately at parity with in-hours, which it never was before.
+
+More importantly than the headline numbers: the human customer service team is properly resourced for the work AI shouldn't do. They're not buried in bill queries any more. They're handling the hard conversations — the bereavements, the disputes, the long-tenured-customer escalations. Morale is up. Turnover is down. That doesn't show in a deflection-rate chart but it's the part I'd protect first if budget got cut tomorrow.
+
+The agent isn't done. We push tuning changes most weeks. There's a backlog of things we know it doesn't do well enough yet. The category as a whole is still moving — what we built in 2024 looks crude compared to what we'd build today. But it works, customers prefer it to the previous experience, and the business is measurably better off.
+
+## If you're thinking about doing this
+
+Three things I'd say to any operator considering a similar deployment.
+
+**One: it's slower than the demos suggest.** A real production deployment is 8-12 weeks before it's good and three months more before it's tuned. Anyone selling you a faster path is selling you demoware. Plan for the long version.
+
+**Two: the partner choice matters more than the model choice.** The model is a commodity. The integration and the tone and the escalation logic are not. Pick a partner who'll be in the weekly tuning call with you a year from now, not one who'll deliver and disappear.
+
+**Three: start with one lane.** Pick one ticket type, one channel. Get it excellent. Then add another. The agents that fail try to do everything from day one.
+
+If you've read this far and you want to talk through what a similar deployment would look like for your business, that's what the 30-minute discovery call is for. No pitch in it. We'll walk through the readiness checks, the realistic timeline for your specific situation, and whether the maths actually works for the volume you're running. If it doesn't, we'll tell you that honestly — there are plenty of businesses where the right answer is *not yet*, and selling you a build that won't perform would be bad for both of us.
+
+The companion piece to this one, [AI customer service in 2026: what actually works for UK mid-market operators](/blog/ai-customer-service-uk-2026-guide), is the more structured field guide if you want the framework without the founder-log voice.
+
+— *Silv*

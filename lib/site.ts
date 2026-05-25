@@ -28,12 +28,16 @@ export const SITE = {
   },
 } as const;
 
+// Anchor links use the absolute `/#section` form so they resolve
+// correctly from any page (e.g. /blog/article-slug → /#wedge), not
+// just from the homepage.
 export const NAV_LINKS = [
-  { href: "#wedge", label: "Why us" },
-  { href: "#agents-explainer", label: "AI agents" },
-  { href: "#handover", label: "Handover" },
-  { href: "#departments", label: "Departments" },
-  { href: "#partners", label: "Integrations" },
-  { href: "#how", label: "How it works" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#wedge", label: "Why us" },
+  { href: "/#agents-explainer", label: "AI agents" },
+  { href: "/#handover", label: "Handover" },
+  { href: "/#departments", label: "Departments" },
+  { href: "/#partners", label: "Integrations" },
+  { href: "/#how", label: "How it works" },
+  { href: "/blog", label: "Blog" },
+  { href: "/#faq", label: "FAQ" },
 ] as const;
