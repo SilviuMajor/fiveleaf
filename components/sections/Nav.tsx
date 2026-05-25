@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
@@ -24,8 +25,18 @@ import { cn } from "@/lib/utils";
  */
 export function Nav() {
   const reduce = useReducedMotion();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  // The transparent-over-hero treatment (white logo + links on no
+  // background) only reads on the dark Hero section. On non-homepage
+  // routes the page background is light (bg-fl-surface), so a
+  // transparent nav with white text becomes invisible against the
+  // page. Force the solid/dark variant from the first render whenever
+  // we're not on '/' so the logo and links are visible immediately.
+  const isHome = pathname === "/";
+  const solid = !isHome || scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -47,7 +58,7 @@ export function Nav() {
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-40 transition-all duration-200",
-          scrolled
+          solid
             ? "bg-fl-surface/92 shadow-[0_1px_0_rgba(15,17,21,0.06)]"
             : "bg-transparent",
         )}
@@ -55,7 +66,7 @@ export function Nav() {
         <div
           className={cn(
             "mx-auto flex h-14 max-w-6xl items-center justify-between gap-6 px-6 transition-colors md:px-10",
-            scrolled ? "text-fl-ink" : "text-white",
+            solid ? "text-fl-ink" : "text-white",
           )}
         >
           <Link href="/" aria-label="Fiveleaf home" className="flex items-center">
@@ -85,7 +96,7 @@ export function Nav() {
               rel="noopener noreferrer"
               className={cn(
                 "inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-colors",
-                scrolled
+                solid
                   ? "border-fl-line text-fl-ink hover:bg-fl-surface-alt"
                   : "border-white/30 text-white hover:bg-white/10",
               )}
@@ -98,7 +109,7 @@ export function Nav() {
               rel="noopener noreferrer"
               className={cn(
                 "inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
-                scrolled
+                solid
                   ? "bg-fl-ink text-white hover:bg-fl-ink-soft"
                   : "bg-white text-fl-ink hover:bg-white/90",
               )}
@@ -115,7 +126,7 @@ export function Nav() {
               rel="noopener noreferrer"
               className={cn(
                 "inline-flex items-center rounded-full px-3 py-1.5 text-xs font-medium transition-colors",
-                scrolled
+                solid
                   ? "bg-fl-ink text-white"
                   : "bg-white text-fl-ink",
               )}
@@ -129,7 +140,7 @@ export function Nav() {
               aria-expanded={open}
               className={cn(
                 "inline-flex h-9 items-center gap-1.5 rounded-full border px-3 text-xs font-medium transition-colors",
-                scrolled
+                solid
                   ? "border-fl-line bg-fl-surface-alt text-fl-ink hover:bg-fl-line"
                   : "border-white/20 bg-white/10 text-white hover:bg-white/15",
               )}
