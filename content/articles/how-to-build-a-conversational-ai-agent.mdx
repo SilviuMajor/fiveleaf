@@ -49,43 +49,75 @@ This is not a matter of degree. It is a different category of thing. If you take
 A production agent is not a single program. It is four distinct layers doing four distinct jobs. Get all four right and the agent works. Get three right and it fails in ways that are maddening to debug, because the failure usually shows up as "the AI said something wrong" when the real problem was three layers down.
 
 <Diagram
-  label="Diagram of the four layers of a production conversational AI agent: conversational, knowledge, integration and handover, stacked from top to bottom."
-  caption="A working conversational AI agent is four distinct layers stacked together. The model handles the top layer. The other three are where most of the build effort goes — and where most failures hide."
-  tone="sky"
+  label="The four layers of a production conversational AI agent stacked vertically: Conversational, Knowledge, Integration and Handover. Each layer is annotated with what it does and what fails when it is missing."
+  caption="A working conversational AI agent is four layers stacked. The model handles the top layer alone. The other three are where most of the build effort lives — and where most failures hide."
+  tone="neutral"
 >
-  <svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+  <svg viewBox="0 0 720 460" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
     <style>{`
-      .lbl { font: 600 16px Inter, system-ui, sans-serif; fill: #0A0A0A; }
-      .sub { font: 400 12px Inter, system-ui, sans-serif; fill: #5C6068; }
-      .num { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; fill: #5C6068; letter-spacing: 0.18em; }
+      .eyebrow { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.22em; }
+      .num { font: 600 38px Inter, system-ui, sans-serif; fill: #171717; letter-spacing: -0.03em; }
+      .layer-name { font: 600 19px Inter, system-ui, sans-serif; fill: #171717; letter-spacing: -0.01em; }
+      .layer-sub { font: 400 13px Inter, system-ui, sans-serif; fill: #404040; }
+      .fail-lbl { font: 600 9px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.22em; }
+      .fail-text { font: 500 12px Inter, system-ui, sans-serif; fill: #404040; }
+      .footnote { font: 400 12px Inter, system-ui, sans-serif; fill: #737373; font-style: italic; }
     `}</style>
-    {/* Four stacked layers */}
-    <g>
-      <rect x="40" y="32" width="640" height="64" rx="12" fill="#FFFFFF" stroke="#E5E5E0" />
-      <text x="68" y="56" className="num">01</text>
-      <text x="68" y="78" className="lbl">Conversational layer</text>
-      <text x="240" y="68" className="sub">Understands intent, holds context, manages tone</text>
+
+    {/* Header */}
+    <text x="40" y="34" className="eyebrow">FOUR LAYERS · WHAT EACH ONE DOES</text>
+    <line x1="40" y1="48" x2="680" y2="48" stroke="#E5E5E5" />
+
+    {/* Dashed spine connecting the four layers on the left */}
+    <line x1="56" y1="88" x2="56" y2="400" stroke="#D4D4D4" strokeWidth="1" strokeDasharray="2 3" />
+
+    {/* Layer 01 — Sand · Conversational */}
+    <g transform="translate(0, 72)">
+      <rect x="50" y="6" width="3" height="60" fill="#D6B976" />
+      <text x="78" y="44" className="num">01</text>
+      <text x="148" y="32" className="layer-name">Conversational</text>
+      <text x="148" y="54" className="layer-sub">Understands intent, holds context, manages tone</text>
+      <line x1="460" y1="20" x2="460" y2="58" stroke="#E5E5E5" />
+      <text x="476" y="32" className="fail-lbl">WITHOUT IT</text>
+      <text x="476" y="56" className="fail-text">A decision-tree bot</text>
     </g>
-    <g>
-      <rect x="40" y="112" width="640" height="64" rx="12" fill="#FFFFFF" stroke="#E5E5E0" />
-      <text x="68" y="136" className="num">02</text>
-      <text x="68" y="158" className="lbl">Knowledge layer</text>
-      <text x="240" y="148" className="sub">Your policies, prices, troubleshooting, retrieved live</text>
+
+    {/* Layer 02 — Sky · Knowledge */}
+    <g transform="translate(0, 158)">
+      <rect x="50" y="6" width="3" height="60" fill="#7AAFD1" />
+      <text x="78" y="44" className="num">02</text>
+      <text x="148" y="32" className="layer-name">Knowledge</text>
+      <text x="148" y="54" className="layer-sub">Your live policies, prices, troubleshooting, retrieved</text>
+      <line x1="460" y1="20" x2="460" y2="58" stroke="#E5E5E5" />
+      <text x="476" y="32" className="fail-lbl">WITHOUT IT</text>
+      <text x="476" y="56" className="fail-text">A generic logo-wearing bot</text>
     </g>
-    <g>
-      <rect x="40" y="192" width="640" height="64" rx="12" fill="#FFFFFF" stroke="#E5E5E0" />
-      <text x="68" y="216" className="num">03</text>
-      <text x="68" y="238" className="lbl">Integration layer</text>
-      <text x="240" y="228" className="sub">Reads and writes to your CRM, billing, helpdesk, telephony</text>
+
+    {/* Layer 03 — Neutral / Ink · Integration */}
+    <g transform="translate(0, 244)">
+      <rect x="50" y="6" width="3" height="60" fill="#171717" />
+      <text x="78" y="44" className="num">03</text>
+      <text x="148" y="32" className="layer-name">Integration</text>
+      <text x="148" y="54" className="layer-sub">Reads and writes to your CRM, billing, helpdesk, telephony</text>
+      <line x1="460" y1="20" x2="460" y2="58" stroke="#E5E5E5" />
+      <text x="476" y="32" className="fail-lbl">WITHOUT IT</text>
+      <text x="476" y="56" className="fail-text">A bot that can talk but not act</text>
     </g>
-    <g>
-      <rect x="40" y="272" width="640" height="64" rx="12" fill="#FFFFFF" stroke="#E5E5E0" />
-      <text x="68" y="296" className="num">04</text>
-      <text x="68" y="318" className="lbl">Handover layer</text>
-      <text x="240" y="308" className="sub">Escalates with confidence, routes correctly, hands over full context</text>
+
+    {/* Layer 04 — Sage · Handover */}
+    <g transform="translate(0, 330)">
+      <rect x="50" y="6" width="3" height="60" fill="#7FAA8C" />
+      <text x="78" y="44" className="num">04</text>
+      <text x="148" y="32" className="layer-name">Handover</text>
+      <text x="148" y="54" className="layer-sub">Escalates with confidence, routes right, hands over context</text>
+      <line x1="460" y1="20" x2="460" y2="58" stroke="#E5E5E5" />
+      <text x="476" y="32" className="fail-lbl">WITHOUT IT</text>
+      <text x="476" y="56" className="fail-text">Customers stranded in loops</text>
     </g>
-    {/* Connecting spine on the left */}
-    <line x1="56" y1="96" x2="56" y2="272" stroke="#0A0A0A" strokeWidth="1.5" strokeDasharray="2 3" />
+
+    {/* Footnote */}
+    <line x1="40" y1="412" x2="680" y2="412" stroke="#E5E5E5" />
+    <text x="40" y="436" className="footnote">The model is the easy part. These four are where the work lives.</text>
   </svg>
 </Diagram>
 

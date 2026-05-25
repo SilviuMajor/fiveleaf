@@ -53,60 +53,78 @@ Every one of these is a conversation that wanted to happen and could not. Multip
 The shift is not about sending more messages or better-written ones. It is about making the message the start of an exchange instead of the end of one.
 
 <Diagram
-  label="Two diagrams side by side. On the left, a notification: a one-way arrow from business to customer that ends in a dead end. On the right, a conversation: the same outbound arrow, but the customer can reply, and the business can respond, in a back-and-forth thread."
-  caption="A notification ends. A conversation continues. Same outbound message, completely different outcome."
-  tone="sand"
+  label="Two panels side by side. On the left, a one-way notification arrow ending in nothing. On the right, the same outbound message but the customer can reply, the business replies back, and the exchange ends in a resolved renewal."
+  caption="A notification ends. A conversation continues. The outbound message is identical; the outcome is not."
+  tone="neutral"
 >
-  <svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+  <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
     <style>{`
-      .h { font: 600 14px Inter, system-ui, sans-serif; fill: #0A0A0A; letter-spacing: 0.02em; }
-      .lbl { font: 500 12px Inter, system-ui, sans-serif; fill: #5C6068; }
-      .bubble-out { font: 500 11px Inter, system-ui, sans-serif; fill: #FFFFFF; }
-      .bubble-in { font: 500 11px Inter, system-ui, sans-serif; fill: #0A0A0A; }
-      .deadend { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #B45656; letter-spacing: 0.2em; }
+      .eyebrow { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 0.22em; }
+      .panel-h { font: 600 19px Inter, system-ui, sans-serif; fill: #171717; letter-spacing: -0.01em; }
+      .panel-sub { font: 400 12px Inter, system-ui, sans-serif; fill: #404040; }
+      .meta { font: 600 9px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.2em; }
+      .bubble-out { font: 500 12px Inter, system-ui, sans-serif; fill: #FFFFFF; }
+      .bubble-in { font: 500 12px Inter, system-ui, sans-serif; fill: #171717; }
+      .resolved { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; fill: #2C5340; letter-spacing: 0.18em; }
+      .deadend-lbl { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; fill: #8A4A47; letter-spacing: 0.22em; }
+      .deadend-sub { font: 400 12px Inter, system-ui, sans-serif; fill: #8A4A47; font-style: italic; }
     `}</style>
-    {/* LEFT: Notification */}
-    <text x="160" y="34" textAnchor="middle" className="h">NOTIFICATION</text>
-    <text x="40" y="76" className="lbl">Business</text>
-    <text x="280" y="76" className="lbl" textAnchor="end">Customer</text>
-    {/* Outbound message */}
-    <rect x="40" y="92" width="160" height="36" rx="10" fill="#0A0A0A" />
-    <text x="56" y="115" className="bubble-out">Renewal reminder…</text>
-    <line x1="200" y1="110" x2="248" y2="110" stroke="#0A0A0A" strokeWidth="1.5" />
-    <polygon points="248,104 260,110 248,116" fill="#0A0A0A" />
-    {/* Customer with no reply path */}
-    <circle cx="276" cy="110" r="14" fill="none" stroke="#5C6068" strokeWidth="1.5" />
-    <text x="276" y="114" textAnchor="middle" className="lbl">?</text>
-    {/* Dead end */}
-    <rect x="60" y="160" width="200" height="60" rx="12" fill="none" stroke="#B45656" strokeWidth="1.5" strokeDasharray="3 4" />
-    <text x="160" y="184" textAnchor="middle" className="deadend">DEAD END</text>
-    <text x="160" y="206" textAnchor="middle" className="lbl">Reply needs a queue, a form, or a call</text>
 
-    {/* Divider */}
-    <line x1="360" y1="40" x2="360" y2="280" stroke="#E5E5E0" strokeWidth="1" />
+    {/* LEFT panel — Notification */}
+    <g>
+      <rect x="20" y="14" width="320" height="392" rx="14" fill="#F0E5D5" opacity="0.55" />
+      <text x="42" y="42" className="eyebrow" style={{ fill: "#5C4830" }}>01 · NOTIFICATION</text>
+      <text x="42" y="72" className="panel-h">A one-way message</text>
+      <text x="42" y="92" className="panel-sub">Reach-out lands. Nothing comes back.</text>
 
-    {/* RIGHT: Conversation */}
-    <text x="540" y="34" textAnchor="middle" className="h">CONVERSATION</text>
-    <text x="420" y="76" className="lbl">Business</text>
-    <text x="660" y="76" className="lbl" textAnchor="end">Customer</text>
-    {/* Outbound message */}
-    <rect x="420" y="92" width="160" height="36" rx="10" fill="#0A0A0A" />
-    <text x="436" y="115" className="bubble-out">Renewal reminder…</text>
-    <line x1="580" y1="110" x2="628" y2="110" stroke="#0A0A0A" strokeWidth="1.5" />
-    <polygon points="628,104 640,110 628,116" fill="#0A0A0A" />
-    {/* Customer reply */}
-    <rect x="500" y="140" width="160" height="36" rx="10" fill="#FFFFFF" stroke="#E5E5E0" />
-    <text x="516" y="163" className="bubble-in">What are my options?</text>
-    <line x1="500" y1="158" x2="452" y2="158" stroke="#0A0A0A" strokeWidth="1.5" />
-    <polygon points="452,152 440,158 452,164" fill="#0A0A0A" />
-    {/* Resolution */}
-    <rect x="420" y="188" width="240" height="36" rx="10" fill="#0A0A0A" />
-    <text x="436" y="211" className="bubble-out">Stay flat or upgrade — same price</text>
-    <line x1="660" y1="206" x2="640" y2="206" stroke="#0A0A0A" strokeWidth="0" />
-    <line x1="580" y1="226" x2="628" y2="226" stroke="#0A0A0A" strokeWidth="0" />
-    {/* Outcome */}
-    <rect x="440" y="236" width="200" height="36" rx="10" fill="#D9E4D5" />
-    <text x="540" y="259" textAnchor="middle" className="bubble-in">Renewed in the thread</text>
+      {/* Sender chip */}
+      <text x="42" y="132" className="meta">FROM YOU</text>
+      <rect x="42" y="142" width="260" height="44" rx="10" fill="#171717" />
+      <text x="60" y="170" className="bubble-out">Your renewal is due 21 May.</text>
+
+      {/* Arrow trailing into the void */}
+      <line x1="172" y1="208" x2="172" y2="252" stroke="#171717" strokeWidth="1.5" />
+      <polygon points="166,250 172,262 178,250" fill="#171717" />
+
+      {/* Customer reads */}
+      <text x="42" y="288" className="meta">CUSTOMER READS · WONDERS</text>
+      <rect x="42" y="298" width="260" height="40" rx="10" fill="#FFFFFF" stroke="#E5E5E5" strokeDasharray="3 3" />
+      <text x="60" y="324" className="bubble-in" style={{ fill: "#737373", fontStyle: "italic" }}>Can I get a better price?</text>
+
+      {/* Dead end */}
+      <line x1="42" y1="360" x2="302" y2="360" stroke="#D4B4B2" strokeWidth="1" strokeDasharray="2 4" />
+      <text x="42" y="384" className="deadend-lbl">DEAD END</text>
+      <text x="138" y="384" className="deadend-sub">queue, form, or call required</text>
+    </g>
+
+    {/* RIGHT panel — Conversation */}
+    <g>
+      <rect x="380" y="14" width="320" height="392" rx="14" fill="#DDE7EF" opacity="0.55" />
+      <text x="402" y="42" className="eyebrow" style={{ fill: "#1F4060" }}>02 · CONVERSATION</text>
+      <text x="402" y="72" className="panel-h">A real exchange</text>
+      <text x="402" y="92" className="panel-sub">Same outbound. Now it can be replied to.</text>
+
+      {/* Bubble 1 — agent, outbound */}
+      <text x="402" y="132" className="meta">FROM YOU</text>
+      <rect x="402" y="142" width="240" height="40" rx="10" fill="#171717" />
+      <text x="420" y="168" className="bubble-out">Your renewal is due 21 May.</text>
+
+      {/* Bubble 2 — customer reply */}
+      <text x="660" y="200" textAnchor="end" className="meta">CUSTOMER REPLIES</text>
+      <rect x="438" y="210" width="240" height="40" rx="10" fill="#FFFFFF" stroke="#E5E5E5" />
+      <text x="456" y="236" className="bubble-in">What are my options?</text>
+
+      {/* Bubble 3 — agent, in-thread answer */}
+      <text x="402" y="268" className="meta">FROM YOU · IN THREAD</text>
+      <rect x="402" y="278" width="276" height="56" rx="10" fill="#171717" />
+      <text x="420" y="302" className="bubble-out">Stay flat at £39 or move to</text>
+      <text x="420" y="320" className="bubble-out">200Mb at the same £39.</text>
+
+      {/* Resolved tag */}
+      <rect x="402" y="360" width="200" height="32" rx="16" fill="#DFEADF" />
+      <circle cx="420" cy="376" r="4" fill="#2C5340" />
+      <text x="434" y="380" className="resolved">RENEWED IN THREAD</text>
+    </g>
   </svg>
 </Diagram>
 

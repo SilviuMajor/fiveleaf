@@ -55,37 +55,82 @@ The next number tells you it has not. Nearly two-thirds of companies are still s
 This is the defining feature of conversational AI in 2026, and it deserves to be stated plainly. Having AI somewhere in your organisation is no longer a differentiator. Almost everyone does. The differentiator is whether you have moved any of it from pilot to production at scale, and almost nobody has. As McKinsey's researchers put it, organisations are very good at doing AI projects but far fewer know how to turn those projects into a new operating baseline.
 
 <Diagram
-  label="Three horizontal bars showing the gap between AI adoption (88% of organisations using AI), AI agent scaling (under 10% scaling agents in any single function), and measurable EBIT impact (39% reporting any impact). The drop-off illustrates the scaling gap."
-  caption="The 2026 paradox in one chart. Adoption is universal; scaling is rare; measurable impact is rarer still. The gap is not technology. It is operating discipline. Source: McKinsey State of AI 2025."
-  tone="sky"
+  label="Three large statistic panels arranged in a funnel from left to right. The first shows 88% of organisations using AI. The second shows fewer than 10% scaling autonomous AI agents. The third shows 39% reporting measurable EBIT impact. Together they show the gap between AI adoption and AI value capture."
+  caption="The 2026 paradox in three panels. Universal adoption, rare scaling, even rarer measurable impact. The gap is operating discipline, not technology. Source: McKinsey State of AI 2025."
+  tone="neutral"
 >
-  <svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+  <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
     <style>{`
-      .lbl { font: 600 14px Inter, system-ui, sans-serif; fill: #0A0A0A; }
-      .sub { font: 400 12px Inter, system-ui, sans-serif; fill: #5C6068; }
-      .num { font: 700 22px 'JetBrains Mono', ui-monospace, monospace; fill: #0A0A0A; }
-      .axis { font: 500 10px 'JetBrains Mono', ui-monospace, monospace; fill: #9CA0A6; letter-spacing: 0.18em; }
+      .eyebrow { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.22em; }
+      .stat-tag { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 0.2em; }
+      .stat-num { font: 600 64px Inter, system-ui, sans-serif; letter-spacing: -0.04em; }
+      .stat-h { font: 600 14px Inter, system-ui, sans-serif; fill: #171717; letter-spacing: -0.01em; }
+      .stat-sub { font: 400 12px Inter, system-ui, sans-serif; fill: #404040; }
+      .arrow-lbl { font: 600 9px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.2em; }
+      .source { font: 400 11px Inter, system-ui, sans-serif; fill: #737373; font-style: italic; }
     `}</style>
-    {/* Row 1 — 88% */}
-    <text x="40" y="56" className="lbl">Organisations using AI</text>
-    <text x="40" y="74" className="sub">in at least one function</text>
-    <rect x="40" y="86" width="616" height="20" rx="6" fill="#FFFFFF" stroke="#E5E5E0" />
-    <rect x="40" y="86" width="542" height="20" rx="6" fill="#0A0A0A" />
-    <text x="600" y="102" className="num">88%</text>
 
-    {/* Row 2 — under 10% */}
-    <text x="40" y="148" className="lbl">Scaling autonomous AI agents</text>
-    <text x="40" y="166" className="sub">in any single function</text>
-    <rect x="40" y="178" width="616" height="20" rx="6" fill="#FFFFFF" stroke="#E5E5E0" />
-    <rect x="40" y="178" width="62" height="20" rx="6" fill="#0A0A0A" />
-    <text x="120" y="194" className="num" style={{ fontSize: "18px" }}>&lt;10%</text>
+    {/* Header */}
+    <text x="40" y="32" className="eyebrow">THE ADOPTION → SCALING → IMPACT FUNNEL</text>
+    <line x1="40" y1="46" x2="680" y2="46" stroke="#E5E5E5" />
 
-    {/* Row 3 — 39% with measurable EBIT */}
-    <text x="40" y="232" className="lbl">Reporting measurable</text>
-    <text x="40" y="250" className="sub">EBIT impact from AI</text>
-    <rect x="40" y="262" width="616" height="20" rx="6" fill="#FFFFFF" stroke="#E5E5E0" />
-    <rect x="40" y="262" width="240" height="20" rx="6" fill="#0A0A0A" />
-    <text x="296" y="278" className="num" style={{ fontSize: "18px" }}>39%</text>
+    {/* Panel 1 — Adoption · sage */}
+    <g>
+      <rect x="40" y="76" width="200" height="248" rx="14" fill="#DFEADF" />
+      <text x="60" y="104" className="stat-tag" style={{ fill: "#2C5340" }}>01 · ADOPTION</text>
+      <text x="60" y="184" className="stat-num" style={{ fill: "#2C5340" }}>88%</text>
+      <text x="60" y="234" className="stat-h">of organisations</text>
+      <text x="60" y="252" className="stat-h">use AI in at least</text>
+      <text x="60" y="270" className="stat-h">one function</text>
+      {/* Proportion indicator */}
+      <rect x="60" y="290" width="160" height="6" rx="3" fill="#FFFFFF" />
+      <rect x="60" y="290" width="141" height="6" rx="3" fill="#2C5340" />
+      <text x="60" y="312" className="stat-sub">Almost universal</text>
+    </g>
+
+    {/* Arrow 1 → 2 */}
+    <g transform="translate(248, 200)">
+      <line x1="0" y1="0" x2="20" y2="0" stroke="#737373" strokeWidth="1" />
+      <polygon points="16,-4 24,0 16,4" fill="#737373" />
+      <text x="0" y="-12" className="arrow-lbl">DROP</text>
+    </g>
+
+    {/* Panel 2 — Scaling · sand */}
+    <g>
+      <rect x="280" y="76" width="200" height="248" rx="14" fill="#F0E5D5" />
+      <text x="300" y="104" className="stat-tag" style={{ fill: "#5C4830" }}>02 · SCALING</text>
+      <text x="300" y="184" className="stat-num" style={{ fill: "#5C4830" }}>&lt;10%</text>
+      <text x="300" y="234" className="stat-h">scaling autonomous</text>
+      <text x="300" y="252" className="stat-h">AI agents in any</text>
+      <text x="300" y="270" className="stat-h">single function</text>
+      <rect x="300" y="290" width="160" height="6" rx="3" fill="#FFFFFF" />
+      <rect x="300" y="290" width="16" height="6" rx="3" fill="#5C4830" />
+      <text x="300" y="312" className="stat-sub">Almost nobody</text>
+    </g>
+
+    {/* Arrow 2 → 3 */}
+    <g transform="translate(488, 200)">
+      <line x1="0" y1="0" x2="20" y2="0" stroke="#737373" strokeWidth="1" />
+      <polygon points="16,-4 24,0 16,4" fill="#737373" />
+      <text x="0" y="-12" className="arrow-lbl">CASHES IN</text>
+    </g>
+
+    {/* Panel 3 — Impact · rose */}
+    <g>
+      <rect x="520" y="76" width="160" height="248" rx="14" fill="#EFDDE0" />
+      <text x="540" y="104" className="stat-tag" style={{ fill: "#8A4A47" }}>03 · IMPACT</text>
+      <text x="540" y="184" className="stat-num" style={{ fill: "#8A4A47" }}>39%</text>
+      <text x="540" y="234" className="stat-h">report measurable</text>
+      <text x="540" y="252" className="stat-h">EBIT impact from</text>
+      <text x="540" y="270" className="stat-h">their AI use</text>
+      <rect x="540" y="290" width="120" height="6" rx="3" fill="#FFFFFF" />
+      <rect x="540" y="290" width="47" height="6" rx="3" fill="#8A4A47" />
+      <text x="540" y="312" className="stat-sub">Mostly under 5%</text>
+    </g>
+
+    {/* Footnote */}
+    <line x1="40" y1="360" x2="680" y2="360" stroke="#E5E5E5" />
+    <text x="40" y="386" className="source">Source: McKinsey State of AI 2025 · n = 1,993 across 105 countries</text>
   </svg>
 </Diagram>
 

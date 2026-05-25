@@ -39,46 +39,81 @@ An altnet has an economic structure that punishes operational gaps more harshly 
 That structure puts enormous weight on three things: getting customers installed and happy quickly, keeping them through their renewal, and answering them whenever they reach out. Each of these is where a thin, overstretched customer team starts to leak, and each leak maps to a different lost-customer mechanism.
 
 <Diagram
-  label="Three rectangular blocks side by side representing the three places ISPs and altnets lose customers: the install-query backlog, renewal calendar churn, and the out-of-hours void."
-  caption="The three places UK altnets quietly lose customers. None of them are about the fibre being bad. All of them are about the operation underneath."
+  label="A vertical customer journey from sign-up at the top to long-term retention at the bottom. Three side drains along the journey represent customers leaving: install-query backlog, renewal calendar gaps, and the out-of-hours void."
+  caption="The customer journey for a UK altnet, with three labelled drains. The fibre is the hard part, and you have already built it. These three leaks are where the customers go."
   tone="rose"
 >
-  <svg viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+  <svg viewBox="0 0 720 540" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
     <style>{`
-      .h { font: 700 14px Inter, system-ui, sans-serif; fill: #0A0A0A; letter-spacing: 0.02em; }
-      .sub { font: 400 12px Inter, system-ui, sans-serif; fill: #5C6068; }
-      .tag { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #5C6068; letter-spacing: 0.2em; }
+      .eyebrow { font: 600 10px 'JetBrains Mono', ui-monospace, monospace; fill: #737373; letter-spacing: 0.22em; }
+      .stage-lbl { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; fill: #404040; letter-spacing: 0.2em; }
+      .pipe-cap { font: 600 14px Inter, system-ui, sans-serif; fill: #171717; }
+      .leak-num { font: 600 28px Inter, system-ui, sans-serif; fill: #171717; letter-spacing: -0.02em; }
+      .leak-h { font: 600 16px Inter, system-ui, sans-serif; fill: #171717; letter-spacing: -0.01em; }
+      .leak-sub { font: 400 12px Inter, system-ui, sans-serif; fill: #404040; }
+      .drop { font: 400 11px Inter, system-ui, sans-serif; fill: #737373; font-style: italic; }
     `}</style>
-    {/* Block 1 */}
+
+    {/* Header */}
+    <text x="40" y="32" className="eyebrow">CUSTOMER JOURNEY · WHERE THE LEAKS LIVE</text>
+    <line x1="40" y1="46" x2="680" y2="46" stroke="#E5E5E5" />
+
+    {/* Central pipe — a tall narrowing rectangle showing customer cohort over time */}
+    {/* Top cap */}
+    <text x="290" y="80" className="stage-lbl">SIGN-UP</text>
+    <rect x="280" y="92" width="160" height="36" rx="6" fill="#171717" />
+    <text x="360" y="116" textAnchor="middle" className="pipe-cap" style={{ fill: "#FFFFFF" }}>Subscribers in</text>
+
+    {/* Pipe body */}
+    <path d="M 280 128 L 290 460 L 430 460 L 440 128 Z" fill="#FAFAFA" stroke="#E5E5E5" />
+
+    {/* Stage labels inside the pipe */}
+    <text x="360" y="170" textAnchor="middle" className="stage-lbl">INSTALL</text>
+    <text x="360" y="290" textAnchor="middle" className="stage-lbl">RENEWAL CYCLE</text>
+    <text x="360" y="410" textAnchor="middle" className="stage-lbl">ANY-TIME SUPPORT</text>
+
+    {/* Bottom cap */}
+    <rect x="290" y="460" width="140" height="36" rx="6" fill="#DFEADF" />
+    <text x="360" y="484" textAnchor="middle" className="pipe-cap" style={{ fill: "#2C5340" }}>Retained</text>
+
+    {/* LEAK 01 — Install, on the left, sand tone */}
     <g>
-      <rect x="32" y="44" width="208" height="152" rx="16" fill="#FFFFFF" stroke="#E5E5E0" />
-      <text x="48" y="74" className="tag">LEAK 01</text>
-      <text x="48" y="104" className="h">Install-query backlog</text>
-      <text x="48" y="132" className="sub">Spiky support volume hits</text>
-      <text x="48" y="150" className="sub">brand-new customers during</text>
-      <text x="48" y="168" className="sub">the most fragile period of</text>
-      <text x="48" y="186" className="sub">the relationship.</text>
+      {/* Drain arrow */}
+      <line x1="290" y1="190" x2="240" y2="190" stroke="#5C4830" strokeWidth="1.5" />
+      <polygon points="244,184 232,190 244,196" fill="#5C4830" />
+      {/* Callout card */}
+      <rect x="40" y="158" width="200" height="84" rx="10" fill="#F0E5D5" />
+      <text x="56" y="180" className="eyebrow" style={{ fill: "#5C4830" }}>LEAK 01</text>
+      <text x="56" y="204" className="leak-h">Install-query backlog</text>
+      <text x="56" y="224" className="leak-sub">First impression spoiled while</text>
+      <text x="56" y="238" className="leak-sub">customers wait for answers.</text>
     </g>
-    {/* Block 2 */}
+
+    {/* LEAK 02 — Renewal, on the right, sky tone */}
     <g>
-      <rect x="256" y="44" width="208" height="152" rx="16" fill="#FFFFFF" stroke="#E5E5E0" />
-      <text x="272" y="74" className="tag">LEAK 02</text>
-      <text x="272" y="104" className="h">Renewal on a calendar</text>
-      <text x="272" y="132" className="sub">Retention runs on whoever</text>
-      <text x="272" y="150" className="sub">is free that week. Saveable</text>
-      <text x="272" y="168" className="sub">customers leave before the</text>
-      <text x="272" y="186" className="sub">save conversation happens.</text>
+      <line x1="440" y1="310" x2="490" y2="310" stroke="#1F4060" strokeWidth="1.5" />
+      <polygon points="486,304 498,310 486,316" fill="#1F4060" />
+      <rect x="490" y="278" width="200" height="84" rx="10" fill="#DDE7EF" />
+      <text x="506" y="300" className="eyebrow" style={{ fill: "#1F4060" }}>LEAK 02</text>
+      <text x="506" y="324" className="leak-h">Renewal on a calendar</text>
+      <text x="506" y="344" className="leak-sub">Save conversation happens</text>
+      <text x="506" y="358" className="leak-sub">too late or never at all.</text>
     </g>
-    {/* Block 3 */}
+
+    {/* LEAK 03 — Out-of-hours, on the left, rose tone */}
     <g>
-      <rect x="480" y="44" width="208" height="152" rx="16" fill="#FFFFFF" stroke="#E5E5E0" />
-      <text x="496" y="74" className="tag">LEAK 03</text>
-      <text x="496" y="104" className="h">Out-of-hours void</text>
-      <text x="496" y="132" className="sub">Evening demand and weekend</text>
-      <text x="496" y="150" className="sub">switchers hit a closed door.</text>
-      <text x="496" y="168" className="sub">Someone else answers</text>
-      <text x="496" y="186" className="sub">while you sleep.</text>
+      <line x1="290" y1="430" x2="240" y2="430" stroke="#8A4A47" strokeWidth="1.5" />
+      <polygon points="244,424 232,430 244,436" fill="#8A4A47" />
+      <rect x="40" y="398" width="200" height="84" rx="10" fill="#EFDDE0" />
+      <text x="56" y="420" className="eyebrow" style={{ fill: "#8A4A47" }}>LEAK 03</text>
+      <text x="56" y="444" className="leak-h">Out-of-hours void</text>
+      <text x="56" y="464" className="leak-sub">Evening and weekend demand</text>
+      <text x="56" y="478" className="leak-sub">hits a closed door.</text>
     </g>
+
+    {/* Footnote */}
+    <line x1="40" y1="510" x2="680" y2="510" stroke="#E5E5E5" />
+    <text x="40" y="530" className="drop">Each leak maps to a different lost-customer mechanism.</text>
   </svg>
 </Diagram>
 
