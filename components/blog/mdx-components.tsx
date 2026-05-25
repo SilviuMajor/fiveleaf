@@ -1,6 +1,5 @@
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
-import { Diagram } from "@/components/blog/Diagram";
 
 /**
  * Styled mapping from raw MDX element tags to brand-styled JSX.
@@ -12,10 +11,6 @@ import { Diagram } from "@/components/blog/Diagram";
  * letting outbound citations stand on their own.
  */
 export const mdxComponents: MDXComponents = {
-  // Custom block-level component used inside article bodies for the
-  // brand-styled SVG diagrams. Articles invoke it via JSX-in-MDX,
-  // e.g. <Diagram label="..." caption="..."><svg>...</svg></Diagram>.
-  Diagram,
   h2: ({ children, id, ...rest }) => (
     <h2
       id={id}
